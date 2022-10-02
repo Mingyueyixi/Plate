@@ -2,8 +2,7 @@ package com.lu.plate.data.drawable
 
 import android.graphics.drawable.GradientDrawable
 import com.lu.plate.util.ColorUtil
-import com.lu.plate.util.SizeUnit
-import com.lu.plate.util.StyleResolution
+import com.lu.plate.util.resolution.StyleResolve
 
 class ShapeBackground(
     var shape: String = "rectangle",
@@ -22,7 +21,7 @@ class ShapeBackground(
 
         private fun handleStroke(drawable: GradientDrawable, cb: ShapeBackground) {
             //描边
-            StyleResolution.parseSize(cb.strokeWidth)?.let {
+            StyleResolve.parseSize(cb.strokeWidth)?.let {
                 drawable.setStroke(
                     it,
                     ColorUtil.parseColor(cb.strokeColor)
