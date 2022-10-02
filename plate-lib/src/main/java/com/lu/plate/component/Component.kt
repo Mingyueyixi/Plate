@@ -1,6 +1,6 @@
 package com.lu.plate.component
 
-import com.lu.plate.recycler.data.Content
+import com.lu.plate.data.Content
 
 
 interface Component {

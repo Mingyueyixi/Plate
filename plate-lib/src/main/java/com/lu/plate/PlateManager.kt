@@ -3,7 +3,7 @@ package com.lu.plate
 import android.app.Application
 import com.lu.plate.exception.TemplateException
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.recycler.data.PlateStructure
+import com.lu.plate.data.PlateStructure
 import com.lu.plate.template.Template
 
 class PlateManager {

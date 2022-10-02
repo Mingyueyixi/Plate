@@ -1,4 +1,4 @@
-package com.lu.plate.recycler.data
+package com.lu.plate.data
 
 import androidx.annotation.Keep
 import org.json.JSONObject

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lu.plate.PlateManager
 import com.lu.plate.recycler.component.BaseVHComponent
 import com.lu.plate.recycler.component.InvalidComponent
-import com.lu.plate.recycler.data.Content
-import com.lu.plate.recycler.data.PlateStructure
+import com.lu.plate.data.Content
+import com.lu.plate.data.PlateStructure
 import com.lu.plate.template.BaseRVTemplate
 
 open class BasePlateRecyclerAdapter(
