@@ -12,17 +12,21 @@ class CardRVTemplate(templateId: Int) : BaseRVTemplate(templateId) {
 
     override fun onCreateComponent(parent: ViewGroup, viewType: Int): BaseVHComponent {
         val binding = CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CardComponent(binding.root, viewType)
+        return CardComponent(binding, binding.root, viewType)
     }
 
-    class CardComponent(itemView: View, viewType: Int) : BaseVHComponent(itemView, viewType) {
+    class CardComponent(
+        private val binding: CardLayoutBinding,
+        itemView: View,
+        viewType: Int
+    ) : BaseVHComponent(itemView, viewType) {
 
         override fun onBindView(
             adapter: BasePlateRecyclerAdapter,
             holder: BasePlateRecyclerAdapter.BVH,
             position: Int
         ) {
-
+            super.onBindView(adapter, holder, position)
         }
 
         override fun refresh(data: Content) {

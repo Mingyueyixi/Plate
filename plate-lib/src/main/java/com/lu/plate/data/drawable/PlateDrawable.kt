@@ -1,14 +1,14 @@
-package com.lu.plate.data
+package com.lu.plate.data.drawable
 
 import android.graphics.drawable.GradientDrawable
 import com.lu.plate.util.ColorUtil
 import com.lu.plate.util.SizeUnit
+import com.lu.plate.util.StyleResolution
 
 class ShapeBackground(
     var shape: String = "rectangle",
     var color: String = "#00000000",
-    var sizeUnit: String = "dp",
-    var strokeWidth: Int? = null,
+    var strokeWidth: String? = null,
     var strokeColor: String? = null,
 ) {
     companion object {
@@ -17,19 +17,17 @@ class ShapeBackground(
             handleShape(drawable, cb)
             drawable.setColor(ColorUtil.parseColor(cb.color))
             handleStroke(drawable, cb)
-
             return drawable
         }
 
         private fun handleStroke(drawable: GradientDrawable, cb: ShapeBackground) {
             //描边
-            cb.strokeWidth?.let {
+            StyleResolution.parseSize(cb.strokeWidth)?.let {
                 drawable.setStroke(
-                    SizeUnit.getPixel(cb.sizeUnit, it).toInt(),
+                    it,
                     ColorUtil.parseColor(cb.strokeColor)
                 )
             }
-
         }
 
         private fun handleShape(drawable: GradientDrawable, cb: ShapeBackground) {

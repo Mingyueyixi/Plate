@@ -1,7 +1,9 @@
 package com.lu.plate.util;
 
 import android.content.res.Resources;
+import android.util.LayoutDirection;
 import android.util.TypedValue;
+import android.view.ViewGroup;
 
 public class SizeUtil {
 
