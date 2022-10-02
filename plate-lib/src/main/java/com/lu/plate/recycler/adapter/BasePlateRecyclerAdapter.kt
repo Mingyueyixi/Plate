@@ -3,24 +3,21 @@ package com.lu.plate.recycler.adapter
 import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.lu.plate.PlateManager
-import com.lu.plate.recycler.data.ComponentModel
+import com.lu.plate.recycler.component.BaseVHComponent
+import com.lu.plate.recycler.component.InvalidComponent
+import com.lu.plate.recycler.data.ContentWrap
 import com.lu.plate.recycler.data.PlateStructure
-import com.lu.plate.recycler.component.BaseRecyclerComponent
-import com.lu.plate.recycler.component.ToDoRecyclerComponent
+import com.lu.plate.template.BaseRVTemplate
 
 open class BasePlateRecyclerAdapter(
     var plateManager: PlateManager,
-    var viewData: PlateStructure
+    var dataSource: PlateStructure
 ) : RecyclerView.Adapter<BasePlateRecyclerAdapter.BVH>() {
 
-    open class BVH(itemView: View, var template: BaseRecyclerComponent) :
-        RecyclerView.ViewHolder(itemView) {}
-
-    open class BaseVH(itemView: View, template: BaseRecyclerComponent) :
-        BVH(itemView, template) {
+    open class BVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val mViews: SparseArray<View?> = SparseArray()
         fun <T : View> getView(id: Int): T? {
             var v = mViews[id]
@@ -32,63 +29,43 @@ open class BasePlateRecyclerAdapter(
         }
     }
 
-    open class BindVH<VB : ViewBinding>(var binding: VB, template: BaseRecyclerComponent) :
-        BaseVH(binding.root, template)
-
-    open fun refreshViewData(vo: PlateStructure) {
-        viewData = vo
+    open fun refreshView(vo: PlateStructure) {
+        dataSource = vo
         notifyDataSetChanged()
     }
 
 
     override fun getItemViewType(position: Int): Int {
-        return getTemplateId(position) ?: return super.getItemViewType(position)
-    }
-
-    private fun getTemplateId(position: Int): Int? {
-        var content = getItem(position)
-        return content?.componentId
+        var item = getItem(position)
+        return item?.templateId ?: RecyclerView.INVALID_TYPE
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BVH {
         var template = plateManager.templateStore[viewType]
-        if (template is BaseRecyclerComponent) {
-            return template.createViewHolder(this, parent, viewType)
+        if (template is BaseRVTemplate) {
+            return template.onCreateComponent(parent, viewType)
         }
-        return ToDoRecyclerComponent().createViewHolder(this, parent, viewType)
+        return InvalidComponent(TextView(parent.context))
     }
 
     override fun onBindViewHolder(holder: BVH, position: Int) {
-        // holder.onBindView(viewData, position)
-        holder.template.onBindViewHolder(this, holder, position)
+        if (holder is BaseVHComponent) {
+            holder.onBindView(this, holder, position)
+            return
+        }
+        throw Exception("invalid holder!!!")
     }
 
-    fun getItem(position: Int): ComponentModel? {
-        return viewData.components[position]
+    fun getItem(position: Int): ContentWrap? {
+        if (position >= 0 && position < dataSource.contents.size) {
+            return dataSource.contents[position]
+        }
+        return null
     }
 
     override fun getItemCount(): Int {
-        return viewData.components.size
+        return dataSource.contents.size
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        viewData.components.forEach {
-            val template = plateManager.templateStore[it.componentId]
-            if (template is BaseRecyclerComponent) {
-                template.onAttachedToRecyclerView(recyclerView)
-            }
-        }
-    }
-
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView)
-        viewData.components.forEach {
-            val template = plateManager.templateStore[it.componentId]
-            if (template is BaseRecyclerComponent) {
-                template.onDetachedFromRecyclerView(recyclerView)
-            }
-        }
-    }
 
 }
