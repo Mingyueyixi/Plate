@@ -7,11 +7,10 @@ import com.lu.plate.component.Component
 import com.lu.plate.data.Style
 import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.util.StyleResolution
 
 abstract class BaseVHComponent(
     itemView: View,
-    templateId:Int
+    templateId: Int
 ) : BasePlateRecyclerAdapter.BVH(itemView), Component {
 
 
@@ -33,52 +32,51 @@ abstract class BaseVHComponent(
     ) {
         val content = adapter.getItem(position)
         content?.style?.apply {
-            applyPadding(this, holder.itemView)
-
-            //背景
-            background?.let {
-                holder.itemView.background = ShapeBackground.from(it)
-            }
-
+            //布局参数
             val lp = itemView.layoutParams
             if (lp != null) {
                 applyLayoutParams(this, lp)
             }
-
+            applyPadding(this, holder.itemView)
+            //背景
+            background?.let {
+                holder.itemView.background = ShapeBackground.from(it)
+            }
         }
     }
 
     private fun applyPadding(style: Style, itemView: View) {
-        val l = StyleResolution.parseSize(style.paddingLeft) ?: itemView.paddingLeft
-        val t = StyleResolution.parseSize(style.paddingTop) ?: itemView.paddingTop
-        val r = StyleResolution.parseSize(style.paddingRight) ?: itemView.paddingRight
-        val b = StyleResolution.parseSize(style.paddingBottom) ?: itemView.paddingBottom
-        itemView.setPadding(l, t, r, b)
+        style.__archive__?.let {
+            val l = it.paddingLeft ?: itemView.paddingLeft
+            val t = it.paddingTop ?: itemView.paddingTop
+            val r = it.paddingRight ?: itemView.paddingRight
+            val b = it.paddingBottom ?: itemView.paddingBottom
+            itemView.setPadding(l, t, r, b)
+        }
+
     }
 
     private fun applyLayoutParams(style: Style, lp: ViewGroup.LayoutParams) {
-        val w = StyleResolution.parseSize(style.width)
-        if (w != null) {
-            lp.width = w
-        }
-
-        val h = StyleResolution.parseSize(style.height)
-        if (h != null) {
-            lp.height = h
-        }
-
-        if (lp is MarginLayoutParams) {
-            StyleResolution.parseSize(style.marginLeft)?.let {
-                lp.leftMargin = it
+        style.__archive__?.apply {
+            width?.let {
+                lp.width = it
             }
-            StyleResolution.parseSize(style.marginRight)?.let {
-                lp.rightMargin = it
+            height?.let {
+                lp.height = it
             }
-            StyleResolution.parseSize(style.marginTop)?.let {
-                lp.topMargin = it
-            }
-            StyleResolution.parseSize(style.marginBottom)?.let {
-                lp.bottomMargin = it
+            if (lp is MarginLayoutParams) {
+                marginLeft?.let {
+                    lp.leftMargin = it
+                }
+                marginRight?.let {
+                    lp.rightMargin = it
+                }
+                marginTop?.let {
+                    lp.topMargin = it
+                }
+                marginBottom?.let {
+                    lp.bottomMargin = it
+                }
             }
         }
 
