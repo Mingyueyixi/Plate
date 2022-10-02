@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lu.plate.databinding.ActivityMainBinding
-import com.lu.plate.recycler.data.ContentWrap
+import com.lu.plate.recycler.data.Content
 import com.lu.plate.recycler.data.PlateStructure
 import com.lu.plate.recycler.data.ShapeBackground
 import com.lu.plate.recycler.data.Style
@@ -39,16 +39,16 @@ class MainActivity : AppCompatActivity() {
     fun initData() {
         mPlateData = PlateStructure().apply {
             contents.add(
-                ContentWrap(
+                Content(
                     1,
                     Style(background = ShapeBackground(color = "#FFAA3399"))
                 )
             )
-            contents.add(ContentWrap(1))
-            contents.add(ContentWrap(1))
-            contents.add(ContentWrap(1))
-        }
 
+            contents.add(Content(1))
+            contents.add(Content(1))
+            contents.add(Content(1))
+        }
     }
 
 }

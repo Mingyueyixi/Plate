@@ -5,7 +5,7 @@ import org.json.JSONObject
 
 @Keep
 class Content(
-    var contentId: Int = 0,
-    var style: Style?,
-    var data: MutableList<JSONObject> = mutableListOf()
+    val templateId: Int = -1,
+    var style: Style? = null,
+    var elements: MutableList<Element<JSONObject>> = mutableListOf()
 )

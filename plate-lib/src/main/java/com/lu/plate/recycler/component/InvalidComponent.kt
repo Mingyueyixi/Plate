@@ -2,7 +2,7 @@ package com.lu.plate.recycler.component
 
 import android.view.View
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.recycler.data.ContentWrap
+import com.lu.plate.recycler.data.Content
 
 class InvalidComponent(itemview: View) : BaseVHComponent(
     itemview, -1
@@ -15,7 +15,7 @@ class InvalidComponent(itemview: View) : BaseVHComponent(
 
     }
 
-    override fun refresh(data: ContentWrap) {
+    override fun refresh(data: Content) {
 
     }
 
