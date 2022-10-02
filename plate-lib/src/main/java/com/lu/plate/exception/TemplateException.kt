@@ -1,8 +1,8 @@
 package com.lu.plate.exception
 
-import com.lu.plate.component.Component
+import com.lu.plate.template.Template
 
-class TemplateException(var template: Component, message: String) : Exception(message) {
+class TemplateException(var template: Template, message: String) : Exception(message) {
 
     override fun toString(): String {
         val s = javaClass.name
