@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lu.plate.PlateManager
 import com.lu.plate.recycler.component.BaseVHComponent
 import com.lu.plate.recycler.component.InvalidComponent
-import com.lu.plate.recycler.data.ContentWrap
+import com.lu.plate.recycler.data.Content
 import com.lu.plate.recycler.data.PlateStructure
 import com.lu.plate.template.BaseRVTemplate
 
@@ -56,7 +56,7 @@ open class BasePlateRecyclerAdapter(
         throw Exception("invalid holder!!!")
     }
 
-    fun getItem(position: Int): ContentWrap? {
+    fun getItem(position: Int): Content? {
         if (position >= 0 && position < dataSource.contents.size) {
             return dataSource.contents[position]
         }

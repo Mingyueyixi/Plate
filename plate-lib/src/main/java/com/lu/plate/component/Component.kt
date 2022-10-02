@@ -1,15 +1,8 @@
 package com.lu.plate.component
 
-import com.lu.plate.recycler.data.ContentWrap
+import com.lu.plate.recycler.data.Content
 
 
 interface Component {
-    fun refresh(data: ContentWrap)
+    fun refresh(data: Content)
 }
-
-interface LifeComponent{
-    fun onCreate()
-    fun onMounted()
-    fun unMounted()
-}
-

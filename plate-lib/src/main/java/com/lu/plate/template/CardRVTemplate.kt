@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.lu.plate.databinding.CardLayoutBinding
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.recycler.component.BaseVHComponent
-import com.lu.plate.recycler.data.ContentWrap
+import com.lu.plate.recycler.data.Content
 
 class CardRVTemplate(templateId: Int) : BaseRVTemplate(templateId) {
 
@@ -25,7 +25,7 @@ class CardRVTemplate(templateId: Int) : BaseRVTemplate(templateId) {
 
         }
 
-        override fun refresh(data: ContentWrap) {
+        override fun refresh(data: Content) {
 
         }
 
