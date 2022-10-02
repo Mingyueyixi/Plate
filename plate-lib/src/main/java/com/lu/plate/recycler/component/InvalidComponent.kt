@@ -2,7 +2,7 @@ package com.lu.plate.recycler.component
 
 import android.view.View
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.recycler.data.Content
+import com.lu.plate.data.Content
 
 class InvalidComponent(itemview: View) : BaseVHComponent(
     itemview, -1

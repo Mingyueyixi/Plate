@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.lu.plate.databinding.CardLayoutBinding
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.recycler.component.BaseVHComponent
-import com.lu.plate.recycler.data.Content
+import com.lu.plate.data.Content
 
 class CardRVTemplate(templateId: Int) : BaseRVTemplate(templateId) {
 

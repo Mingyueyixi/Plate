@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lu.plate.databinding.ActivityMainBinding
-import com.lu.plate.recycler.data.Content
-import com.lu.plate.recycler.data.PlateStructure
-import com.lu.plate.recycler.data.ShapeBackground
-import com.lu.plate.recycler.data.Style
+import com.lu.plate.data.Content
+import com.lu.plate.data.PlateStructure
+import com.lu.plate.data.ShapeBackground
+import com.lu.plate.data.Style
 import com.lu.plate.template.CardRVTemplate
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                     Style(background = ShapeBackground(color = "#FFAA3399"))
                 )
             )
-
             contents.add(Content(1))
             contents.add(Content(1))
             contents.add(Content(1))

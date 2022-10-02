@@ -1,4 +1,4 @@
-package com.lu.plate.recycler.data
+package com.lu.plate.data
 
 import android.graphics.drawable.GradientDrawable
 import com.lu.plate.util.ColorUtil
