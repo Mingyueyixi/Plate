@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lu.plate.databinding.ActivityMainBinding
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
-import com.lu.plate.data.ShapeBackground
 import com.lu.plate.data.Style
+import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.template.CardRVTemplate
 
 class MainActivity : AppCompatActivity() {
@@ -41,12 +41,26 @@ class MainActivity : AppCompatActivity() {
             contents.add(
                 Content(
                     1,
-                    Style(background = ShapeBackground(color = "#FFAA3399"))
+                    Style(background = ShapeBackground(color = "#FFAA3399"), marginBottom = "100")
                 )
             )
-            contents.add(Content(1))
-            contents.add(Content(1))
-            contents.add(Content(1))
+            contents.add(Content(1, Style(marginTop = "0", marginBottom = "100 dp")))
+            contents.add(Content(1, Style(marginTop = "0", marginBottom = "0")))
+            contents.add(Content(1, Style(marginTop = "0", marginBottom = "0")))
+            contents.add(
+                Content(
+                    1,
+                    Style(
+                        marginTop = "0",
+                        marginBottom = "0",
+                        paddingBottom = "50dp",
+                        background = ShapeBackground(
+                            color = "#FF00ee33",
+                            strokeWidth = "10dp"
+                        )
+                    )
+                )
+            )
         }
     }
 
