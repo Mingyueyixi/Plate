@@ -7,7 +7,7 @@ abstract class ArchiveSource<T> {
     var __archive__: T? = null
         get() {
             if (field == null) {
-                return __fetchArchive()
+                field = onLazyInitArchiveValue()
             }
             return field
         }
@@ -15,5 +15,5 @@ abstract class ArchiveSource<T> {
             field = value
         }
 
-    abstract fun __fetchArchive(): T
+    abstract fun onLazyInitArchiveValue(): T
 }

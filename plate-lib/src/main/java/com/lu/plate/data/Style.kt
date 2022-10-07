@@ -34,8 +34,7 @@ class Style(
         var background: ShapeBackground? = null
     )
 
-
-    override fun __fetchArchive(): Archive {
+    override fun onLazyInitArchiveValue(): Archive {
         return Archive(
             width = StyleResolve.parseSize(width),
             height = StyleResolve.parseSize(height),
