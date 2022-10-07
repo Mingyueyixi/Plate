@@ -36,16 +36,16 @@ class Style(
 
     override fun onLazyInitArchiveValue(): Archive {
         return Archive(
-            width = StyleResolve.parseSize(width),
-            height = StyleResolve.parseSize(height),
-            marginLeft = StyleResolve.parseSize(marginLeft),
-            marginTop = StyleResolve.parseSize(marginTop),
-            marginRight = StyleResolve.parseSize(marginRight),
-            marginBottom = StyleResolve.parseSize(marginBottom),
-            paddingLeft = StyleResolve.parseSize(paddingLeft),
-            paddingTop = StyleResolve.parseSize(paddingTop),
-            paddingRight = StyleResolve.parseSize(paddingRight),
-            paddingBottom = StyleResolve.parseSize(paddingBottom),
+            width = StyleResolve.size.parseIntOrNull(width),
+            height = StyleResolve.size.parseIntOrNull(height),
+            marginLeft = StyleResolve.size.parseIntOrNull(marginLeft),
+            marginTop = StyleResolve.size.parseIntOrNull(marginTop),
+            marginRight = StyleResolve.size.parseIntOrNull(marginRight),
+            marginBottom = StyleResolve.size.parseIntOrNull(marginBottom),
+            paddingLeft = StyleResolve.size.parseIntOrNull(paddingLeft),
+            paddingTop = StyleResolve.size.parseIntOrNull(paddingTop),
+            paddingRight = StyleResolve.size.parseIntOrNull(paddingRight),
+            paddingBottom = StyleResolve.size.parseIntOrNull(paddingBottom),
             background = background
         )
     }

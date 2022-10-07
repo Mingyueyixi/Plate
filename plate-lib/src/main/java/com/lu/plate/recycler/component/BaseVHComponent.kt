@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import com.lu.plate.component.Component
 import com.lu.plate.data.Style
-import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
+import com.lu.plate.util.resolution.StyleResolve
 
 abstract class BaseVHComponent(
     itemView: View,
@@ -40,7 +40,7 @@ abstract class BaseVHComponent(
             applyPadding(this, holder.itemView)
             //背景
             background?.let {
-                holder.itemView.background = ShapeBackground.from(it)
+                holder.itemView.background = StyleResolve.background.create(it)
             }
         }
     }

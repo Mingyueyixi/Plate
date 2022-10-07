@@ -13,36 +13,49 @@ class SizeResolution {
         const val UNIT_SP = "sp"
     }
 
-    fun resolve(textSource: String?): Int? {
+    fun parseInt(textSource: String?, defaultValue: Int = 0): Int {
+        return parseFloatOrNull(textSource)?.toInt() ?: defaultValue
+    }
+
+    fun parseIntOrNull(textSource: String?): Int? {
+        return parseFloatOrNull(textSource)?.toInt()
+    }
+
+    fun parseFloat(textSource: String?, defaultValue: Float = 0f): Float {
+        return parseFloatOrNull(textSource) ?: defaultValue
+    }
+
+    fun parseFloatOrNull(textSource: String?): Float? {
         if (textSource.isNullOrBlank()) {
             return null
         }
         when (val text = textSource.trim()) {
-            WRAP_CONTENT -> return ViewGroup.MarginLayoutParams.WRAP_CONTENT
-            MATCH_PARENT -> return ViewGroup.MarginLayoutParams.MATCH_PARENT
+            WRAP_CONTENT -> return ViewGroup.MarginLayoutParams.WRAP_CONTENT.toFloat()
+            MATCH_PARENT -> return ViewGroup.MarginLayoutParams.MATCH_PARENT.toFloat()
             else -> {
                 if (text.endsWith(UNIT_DP)) {
                     val numText = text.substring(0, text.length - UNIT_DP.length)
                     val num = numText.trim().toFloat()
-                    return SizeUtil.dp2px(PlateManager.context.resources, num).toInt()
+                    return SizeUtil.dp2px(PlateManager.context.resources, num)
                 } else if (text.endsWith(UNIT_SP)) {
                     val numText = text.substring(0, text.length - UNIT_SP.length)
                     val num = numText.trim().toFloat()
-                    return SizeUtil.sp2px(PlateManager.context.resources, num).toInt()
+                    return SizeUtil.sp2px(PlateManager.context.resources, num)
                 } else if (text.endsWith(UNIT_PX)) {
                     val numText = text.substring(0, text.length - UNIT_PX.length)
-                    return numText.trim().toInt()
+                    return numText.trim().toFloat()
                 } else {
                     //不带单位 --> 像素
                     //非法单位 --> exception --> warp
                     try {
-                        return text.toInt()
+                        return text.toFloat()
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
             }
         }
-        return ViewGroup.MarginLayoutParams.WRAP_CONTENT
+        return null
     }
+
 }
