@@ -1,15 +1,14 @@
 package com.lu.plate.util.resolution
 
+import android.graphics.drawable.Drawable
+import com.lu.plate.data.drawable.ShapeBackground
+
 class StyleResolve {
 
     companion object {
-        var sizeResolution = SizeResolution()
-
-        @JvmStatic
-        fun parseSize(text: String?): Int? {
-            return sizeResolution.resolve(text)
-        }
-
+        var size = SizeResolution()
+        var background = BackgroundResolution()
+        var color = ColorResolution()
     }
 
 

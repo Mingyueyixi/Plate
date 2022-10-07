@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             contents.add(
                 Content(
                     1,
-                    Style(background = ShapeBackground(color = "#FFAA3399"), marginBottom = "100")
+                    Style(background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")), marginBottom = "100")
                 )
             )
             contents.add(Content(1, Style(marginTop = "0", marginBottom = "100 dp")))
@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity() {
                         marginBottom = "0",
                         paddingBottom = "50dp",
                         background = ShapeBackground(
-                            color = "#FF00ee33",
-                            strokeWidth = "10dp"
+                            solid = ShapeBackground.Solid("#FF00ee33"),
+                            stroke = ShapeBackground.Stroke(width = "10dp"),
                         )
                     )
                 )
