@@ -1,39 +1,49 @@
-package com.lu.plate
+package com.lu.plate.demo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lu.plate.databinding.ActivityMainBinding
+import com.lu.plate.PlateManager
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.data.Style
 import com.lu.plate.data.drawable.ShapeBackground
+import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.template.CardRVTemplate
 
-class MainActivity : AppCompatActivity() {
+class MainFragment : Fragment() {
     private lateinit var mPlateData: PlateStructure
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: FragmentRvDemoBinding
     private val plateManager: PlateManager by lazy {
         PlateManager().apply {
             register(CardRVTemplate(1))
         }
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        PlateManager.doInit(application)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        activity?.application?.let {
+            PlateManager.doInit(it)
+        }
+        binding = FragmentRvDemoBinding.inflate(layoutInflater)
         initData()
         initView()
+        return binding.root
     }
 
     private fun initView() {
-        binding.rvContent.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvContent.adapter = plateManager.createRecyclerAdapter(mPlateData)
+        binding.rvContent.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            adapter = plateManager.createRecyclerAdapter(mPlateData)
+        }
     }
 
     fun initData() {
@@ -41,7 +51,10 @@ class MainActivity : AppCompatActivity() {
             contents.add(
                 Content(
                     1,
-                    Style(background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")), marginBottom = "100")
+                    Style(
+                        background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")),
+                        marginBottom = "100"
+                    )
                 )
             )
             contents.add(Content(1, Style(marginTop = "0", marginBottom = "100 dp")))
