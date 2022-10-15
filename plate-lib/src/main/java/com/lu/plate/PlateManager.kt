@@ -22,13 +22,13 @@ class PlateManager {
     }
 
     fun registerWithCover(vararg templates: Template): PlateManager {
-        registerInternal(true, *templates)
+        registerInternal(false, *templates)
         return this
     }
 
-    private fun registerInternal(force: Boolean = false, vararg templates: Template) {
+    private fun registerInternal(check: Boolean = false, vararg templates: Template) {
         for (template in templates) {
-            if (force) {
+            if (check) {
                 checkTemplateVail(template)
             }
             val templateId = template.getTemplateId()
