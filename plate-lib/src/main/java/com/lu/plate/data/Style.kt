@@ -2,7 +2,7 @@ package com.lu.plate.data
 
 import androidx.annotation.Keep
 import com.lu.plate.data.drawable.ShapeBackground
-import com.lu.plate.util.resolution.StyleResolve
+import com.lu.plate.util.resolve.StyleComposite
 
 @Keep
 class Style(
@@ -36,16 +36,16 @@ class Style(
 
     override fun onLazyInitArchiveValue(): Archive {
         return Archive(
-            width = StyleResolve.size.parseIntOrNull(width),
-            height = StyleResolve.size.parseIntOrNull(height),
-            marginLeft = StyleResolve.size.parseIntOrNull(marginLeft),
-            marginTop = StyleResolve.size.parseIntOrNull(marginTop),
-            marginRight = StyleResolve.size.parseIntOrNull(marginRight),
-            marginBottom = StyleResolve.size.parseIntOrNull(marginBottom),
-            paddingLeft = StyleResolve.size.parseIntOrNull(paddingLeft),
-            paddingTop = StyleResolve.size.parseIntOrNull(paddingTop),
-            paddingRight = StyleResolve.size.parseIntOrNull(paddingRight),
-            paddingBottom = StyleResolve.size.parseIntOrNull(paddingBottom),
+            width = StyleComposite.size.parseIntOrNull(width),
+            height = StyleComposite.size.parseIntOrNull(height),
+            marginLeft = StyleComposite.size.parseIntOrNull(marginLeft),
+            marginTop = StyleComposite.size.parseIntOrNull(marginTop),
+            marginRight = StyleComposite.size.parseIntOrNull(marginRight),
+            marginBottom = StyleComposite.size.parseIntOrNull(marginBottom),
+            paddingLeft = StyleComposite.size.parseIntOrNull(paddingLeft),
+            paddingTop = StyleComposite.size.parseIntOrNull(paddingTop),
+            paddingRight = StyleComposite.size.parseIntOrNull(paddingRight),
+            paddingBottom = StyleComposite.size.parseIntOrNull(paddingBottom),
             background = background
         )
     }

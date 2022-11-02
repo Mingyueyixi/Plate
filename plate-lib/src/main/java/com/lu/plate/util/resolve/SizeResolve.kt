@@ -1,10 +1,10 @@
-package com.lu.plate.util.resolution
+package com.lu.plate.util.resolve
 
 import android.view.ViewGroup
 import com.lu.plate.PlateManager
 import com.lu.plate.util.SizeUtil
 
-class SizeResolution {
+class SizeResolve {
     companion object {
         const val WRAP_CONTENT = "wrap_content"
         const val MATCH_PARENT = "match_parent"
@@ -13,19 +13,19 @@ class SizeResolution {
         const val UNIT_SP = "sp"
     }
 
-    fun parseInt(textSource: String?, defaultValue: Int = 0): Int {
+    open fun parseInt(textSource: String?, defaultValue: Int = 0): Int {
         return parseFloatOrNull(textSource)?.toInt() ?: defaultValue
     }
 
-    fun parseIntOrNull(textSource: String?): Int? {
+    open fun parseIntOrNull(textSource: String?): Int? {
         return parseFloatOrNull(textSource)?.toInt()
     }
 
-    fun parseFloat(textSource: String?, defaultValue: Float = 0f): Float {
+    open fun parseFloat(textSource: String?, defaultValue: Float = 0f): Float {
         return parseFloatOrNull(textSource) ?: defaultValue
     }
 
-    fun parseFloatOrNull(textSource: String?): Float? {
+    open fun parseFloatOrNull(textSource: String?): Float? {
         if (textSource.isNullOrBlank()) {
             return null
         }

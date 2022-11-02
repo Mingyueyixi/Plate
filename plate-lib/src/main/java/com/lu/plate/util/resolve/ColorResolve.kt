@@ -1,9 +1,9 @@
-package com.lu.plate.util.resolution
+package com.lu.plate.util.resolve
 
 import android.graphics.Color
 
-class ColorResolution {
-    fun parseColor(colorText: String?, defaultColor: Int = Color.TRANSPARENT): Int {
+class ColorResolve {
+    open fun parseColor(colorText: String?, defaultColor: Int = Color.TRANSPARENT): Int {
         if (colorText == null) {
             return defaultColor
         }

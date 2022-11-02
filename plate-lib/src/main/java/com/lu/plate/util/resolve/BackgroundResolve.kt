@@ -1,4 +1,4 @@
-package com.lu.plate.util.resolution
+package com.lu.plate.util.resolve
 
 import android.graphics.PorterDuff
 import android.graphics.drawable.GradientDrawable
@@ -6,9 +6,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.lu.plate.data.drawable.ShapeBackground
 
-class BackgroundResolution {
+class BackgroundResolve {
 
-    fun create(sb: ShapeBackground): GradientDrawable {
+    open fun create(sb: ShapeBackground): GradientDrawable {
         val drawable = GradientDrawable()
         applyNodeAttr(sb, drawable)
         applyChildNodeStroke(sb, drawable)
@@ -58,11 +58,11 @@ class BackgroundResolution {
             }
 
             val colors = arrayListOf<Int>(
-                StyleResolve.color.parseColor(it.startColor),
-                StyleResolve.color.parseColor(it.endColor),
+                StyleComposite.color.parseColor(it.startColor),
+                StyleComposite.color.parseColor(it.endColor),
             )
             if (it.centerColor != null) {
-                colors.add(StyleResolve.color.parseColor(it.centerColor))
+                colors.add(StyleComposite.color.parseColor(it.centerColor))
             }
             drawable.colors = colors.toIntArray()
 
@@ -77,12 +77,12 @@ class BackgroundResolution {
         }
         val radius = sb.corners?.radius
         if (radius != null) {
-            drawable.cornerRadius = StyleResolve.size.parseFloat(radius)
+            drawable.cornerRadius = StyleComposite.size.parseFloat(radius)
         } else {
-            val tlr = StyleResolve.size.parseFloat(sb.corners?.topLeftRadius)
-            val trr = StyleResolve.size.parseFloat(sb.corners?.topRightRadius)
-            val brr = StyleResolve.size.parseFloat(sb.corners?.bottomRightRadius)
-            val blr = StyleResolve.size.parseFloat(sb.corners?.bottomLeftRadius)
+            val tlr = StyleComposite.size.parseFloat(sb.corners?.topLeftRadius)
+            val trr = StyleComposite.size.parseFloat(sb.corners?.topRightRadius)
+            val brr = StyleComposite.size.parseFloat(sb.corners?.bottomRightRadius)
+            val blr = StyleComposite.size.parseFloat(sb.corners?.bottomLeftRadius)
             //top-left, top-right, bottom-right, bottom-left
             drawable.cornerRadii = floatArrayOf(tlr, tlr, trr, trr, brr, brr, blr, blr)
         }
@@ -90,16 +90,16 @@ class BackgroundResolution {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun applyChildNodePadding(sb: ShapeBackground, drawable: GradientDrawable) {
-        val l = StyleResolve.size.parseInt(sb.padding?.left)
-        val t = StyleResolve.size.parseInt(sb.padding?.top)
-        val r = StyleResolve.size.parseInt(sb.padding?.right)
-        val b = StyleResolve.size.parseInt(sb.padding?.bottom)
+        val l = StyleComposite.size.parseInt(sb.padding?.left)
+        val t = StyleComposite.size.parseInt(sb.padding?.top)
+        val r = StyleComposite.size.parseInt(sb.padding?.right)
+        val b = StyleComposite.size.parseInt(sb.padding?.bottom)
         drawable.setPadding(l, t, r, b)
     }
 
     private fun applyChildNodeSize(sb: ShapeBackground, drawable: GradientDrawable) {
-        val width = StyleResolve.size.parseIntOrNull(sb.size?.width)
-        val height = StyleResolve.size.parseIntOrNull(sb.size?.height)
+        val width = StyleComposite.size.parseIntOrNull(sb.size?.width)
+        val height = StyleComposite.size.parseIntOrNull(sb.size?.height)
         if (width != null && height != null) {
             drawable.setSize(width, height)
         }
@@ -107,17 +107,17 @@ class BackgroundResolution {
 
     private fun applyChildNodeStroke(sb: ShapeBackground, drawable: GradientDrawable) {
         sb.stroke?.let {
-            val width = StyleResolve.size.parseInt(it.width)
-            val color = StyleResolve.color.parseColor(it.color)
-            val dashWidth = StyleResolve.size.parseFloat(it.dashWidth)
-            val dashGap = StyleResolve.size.parseFloat(it.dashGap)
+            val width = StyleComposite.size.parseInt(it.width)
+            val color = StyleComposite.color.parseColor(it.color)
+            val dashWidth = StyleComposite.size.parseFloat(it.dashWidth)
+            val dashGap = StyleComposite.size.parseFloat(it.dashGap)
             drawable.setStroke(width, color, dashWidth, dashGap)
         }
     }
 
     private fun applyChildNodeSolid(sb: ShapeBackground, drawable: GradientDrawable) {
         sb.solid?.let {
-            drawable.setColor(StyleResolve.color.parseColor(it.color))
+            drawable.setColor(StyleComposite.color.parseColor(it.color))
         }
     }
 
@@ -137,13 +137,13 @@ class BackgroundResolution {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            StyleResolve.size.parseIntOrNull(sb.innerRadius)?.let {
+            StyleComposite.size.parseIntOrNull(sb.innerRadius)?.let {
                 drawable.innerRadius = it
             }
             sb.innerRadiusRatio?.let {
                 drawable.innerRadiusRatio = it
             }
-            StyleResolve.size.parseIntOrNull(sb.thickness)?.let {
+            StyleComposite.size.parseIntOrNull(sb.thickness)?.let {
                 drawable.thickness = it
             }
             sb.thicknessRatio?.let {
@@ -154,7 +154,7 @@ class BackgroundResolution {
             drawable.setDither(it)
         }
         sb.tint?.let {
-            drawable.setTint(StyleResolve.color.parseColor(it))
+            drawable.setTint(StyleComposite.color.parseColor(it))
         }
 
         when (sb.tintMode) {

@@ -19,9 +19,7 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentRvDemoBinding
     private val plateManager: PlateManager by lazy {
-        PlateManager().apply {
-            register(CardRVTemplate(1))
-        }
+        PlateManager().register(CardRVTemplate(1))
     }
 
     override fun onCreateView(
