@@ -5,6 +5,7 @@ import com.lu.plate.exception.TemplateException
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.template.Template
+import com.lu.plate.util.resolve.StyleComposite
 
 class PlateManager {
     val templateStore = mutableMapOf<Int, Template>()
@@ -45,6 +46,11 @@ class PlateManager {
 
     fun createRecyclerAdapter(data: PlateStructure): BasePlateRecyclerAdapter {
         return BasePlateRecyclerAdapter(this, data)
+    }
+
+    fun setStyleCompositeIMP(imp: StyleComposite.IMPInterface): PlateManager {
+        StyleComposite.IMP = imp
+        return this
     }
 
 }
