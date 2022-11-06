@@ -1,13 +1,13 @@
 package com.lu.plate
 
 import android.app.Application
+import com.lu.plate.data.PlateStructure
 import com.lu.plate.exception.TemplateException
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.data.PlateStructure
 import com.lu.plate.template.Template
 import com.lu.plate.util.resolve.StyleComposite
 
-class PlateManager {
+class Plate {
     val templateStore = mutableMapOf<Int, Template>()
 
     companion object {
@@ -17,12 +17,12 @@ class PlateManager {
         }
     }
 
-    fun register(vararg templates: Template): PlateManager {
+    fun register(vararg templates: Template): Plate {
         registerInternal(false, *templates)
         return this
     }
 
-    fun registerWithCover(vararg templates: Template): PlateManager {
+    fun registerWithCover(vararg templates: Template): Plate {
         registerInternal(false, *templates)
         return this
     }
@@ -48,9 +48,10 @@ class PlateManager {
         return BasePlateRecyclerAdapter(this, data)
     }
 
-    fun setStyleCompositeIMP(imp: StyleComposite.IMPInterface): PlateManager {
+    fun setStyleCompositeIMP(imp: StyleComposite.IMPInterface): Plate {
         StyleComposite.IMP = imp
         return this
     }
+
 
 }

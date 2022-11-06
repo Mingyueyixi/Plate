@@ -3,12 +3,14 @@ package com.lu.plate.recycler.component
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
+import com.lu.plate.Plate
 import com.lu.plate.component.Component
 import com.lu.plate.data.Style
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.util.resolve.StyleComposite
 
 abstract class BaseVHComponent(
+    plate: Plate,
     itemView: View,
     templateId: Int
 ) : BasePlateRecyclerAdapter.BVH(itemView), Component {

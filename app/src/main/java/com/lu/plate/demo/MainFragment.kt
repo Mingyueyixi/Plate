@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lu.plate.PlateManager
+import com.lu.plate.Plate
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.data.Style
@@ -18,8 +18,10 @@ class MainFragment : Fragment() {
     private lateinit var mPlateData: PlateStructure
 
     private lateinit var binding: FragmentRvDemoBinding
-    private val plateManager: PlateManager by lazy {
-        PlateManager().register(CardRVTemplate(1))
+    private val plate: Plate by lazy {
+        Plate().also {
+            it.register(CardRVTemplate(it, 1))
+        }
     }
 
     override fun onCreateView(
@@ -29,7 +31,7 @@ class MainFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         activity?.application?.let {
-            PlateManager.doInit(it)
+            Plate.doInit(it)
         }
         binding = FragmentRvDemoBinding.inflate(layoutInflater)
         initData()
@@ -40,25 +42,24 @@ class MainFragment : Fragment() {
     private fun initView() {
         binding.rvContent.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            adapter = plateManager.createRecyclerAdapter(mPlateData)
+            adapter = plate.createRecyclerAdapter(mPlateData)
         }
     }
 
     fun initData() {
-        mPlateData = PlateStructure().apply {
-            contents.add(
+        mPlateData = PlateStructure()
+        mPlateData.contents.addAll(
+            arrayListOf(
                 Content(
                     1,
                     Style(
                         background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")),
                         marginBottom = "100"
                     )
-                )
-            )
-            contents.add(Content(1, Style(marginTop = "0", marginBottom = "100 dp")))
-            contents.add(Content(1, Style(marginTop = "0", marginBottom = "0")))
-            contents.add(Content(1, Style(marginTop = "0", marginBottom = "0")))
-            contents.add(
+                ),
+                Content(1, Style(marginTop = "0", marginBottom = "100dp")),
+                Content(1, Style(marginTop = "0", marginBottom = "0")),
+                Content(1, Style(marginTop = "0", marginBottom = "0")),
                 Content(
                     1,
                     Style(
@@ -72,7 +73,8 @@ class MainFragment : Fragment() {
                     )
                 )
             )
-        }
+        )
+
     }
 
 }
