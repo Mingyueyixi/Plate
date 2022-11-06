@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lu.plate.Plate
-import com.lu.plate.databinding.CardLayoutBinding
+import com.lu.plate.ui.databinding.CardLayoutBinding
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.recycler.component.BaseVHComponent
 import com.lu.plate.data.Content

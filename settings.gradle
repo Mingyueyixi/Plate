@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Plate"
 include ':app'
-include ':plate-lib'
+include ':plate-core'
+include ':plate-ui'
