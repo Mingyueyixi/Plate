@@ -1,7 +1,7 @@
 package com.lu.plate.util.resolve
 
 import android.view.ViewGroup
-import com.lu.plate.PlateManager
+import com.lu.plate.Plate
 import com.lu.plate.util.SizeUtil
 
 class SizeResolve {
@@ -36,11 +36,11 @@ class SizeResolve {
                 if (text.endsWith(UNIT_DP)) {
                     val numText = text.substring(0, text.length - UNIT_DP.length)
                     val num = numText.trim().toFloat()
-                    return SizeUtil.dp2px(PlateManager.context.resources, num)
+                    return SizeUtil.dp2px(Plate.context.resources, num)
                 } else if (text.endsWith(UNIT_SP)) {
                     val numText = text.substring(0, text.length - UNIT_SP.length)
                     val num = numText.trim().toFloat()
-                    return SizeUtil.sp2px(PlateManager.context.resources, num)
+                    return SizeUtil.sp2px(Plate.context.resources, num)
                 } else if (text.endsWith(UNIT_PX)) {
                     val numText = text.substring(0, text.length - UNIT_PX.length)
                     return numText.trim().toFloat()

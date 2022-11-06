@@ -1,8 +1,8 @@
 package com.lu.plate.template
 
-import android.view.ViewGroup
+import com.lu.plate.Plate
 
-open class BaseTemplate(private val templateId:Int):Template {
+open class BaseTemplate(var plate: Plate, private val templateId: Int) : Template {
 
     override fun getTemplateId(): Int {
         return templateId

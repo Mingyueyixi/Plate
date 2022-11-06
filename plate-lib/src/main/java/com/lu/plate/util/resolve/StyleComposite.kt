@@ -5,9 +5,9 @@ class StyleComposite {
 
     companion object {
         internal var IMP = object : IMPInterface {}
-        val size = IMP.getSizeResolve()
-        val background = IMP.getBackgroundResolve()
-        val color = IMP.getColorResolve()
+        val size :SizeResolve get() = IMP.getSizeResolve()
+        val background get() =  IMP.getBackgroundResolve()
+        val color get() =  IMP.getColorResolve()
 
     }
 

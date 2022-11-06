@@ -1,7 +1,7 @@
 package com.lu.plate.util
 
 import android.util.TypedValue
-import com.lu.plate.PlateManager
+import com.lu.plate.Plate
 
 class SizeUnit {
     companion object {
@@ -17,14 +17,14 @@ class SizeUnit {
                     TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,
                         size.toFloat(),
-                        PlateManager.context.resources.displayMetrics
+                        Plate.context.resources.displayMetrics
                     ).toInt()
                 }
                 sp -> {
                     TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_SP,
                         size.toFloat(),
-                        PlateManager.context.resources.displayMetrics
+                        Plate.context.resources.displayMetrics
                     ).toInt()
                 }
                 else -> size
@@ -38,14 +38,14 @@ class SizeUnit {
                     TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,
                         size,
-                        PlateManager.context.resources.displayMetrics
+                        Plate.context.resources.displayMetrics
                     )
                 }
                 sp -> {
                     TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_SP,
                         size.toFloat(),
-                        PlateManager.context.resources.displayMetrics
+                        Plate.context.resources.displayMetrics
                     )
                 }
                 else -> size
