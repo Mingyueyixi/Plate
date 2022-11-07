@@ -7,13 +7,15 @@
     android:layout_marginHorizontal="12dp"
     android:layout_marginTop="12dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewEle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="12dp"
+        app:cardBackgroundColor="#eeeeee"
         app:cardCornerRadius="10dp"
-        app:strokeColor="#ff00ff00"
-        app:strokeWidth="1dp">
+        app:cardElevation="2dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,5 +64,5 @@
                     android:textSize="14sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

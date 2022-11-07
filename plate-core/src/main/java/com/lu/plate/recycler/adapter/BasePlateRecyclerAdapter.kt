@@ -16,7 +16,7 @@ open class BasePlateRecyclerAdapter(
     var plate: Plate,
     var dataSource: PlateStructure
 ) : RecyclerView.Adapter<BasePlateRecyclerAdapter.BVH>() {
-    private var mOnClickListener: OnClickListener? = null
+    private var mOnClickListener: ((BasePlateRecyclerAdapter, View, Int) -> Unit)? = null
 
 
     open class BVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -50,7 +50,7 @@ open class BasePlateRecyclerAdapter(
             InvalidComponent(plate, TextView(parent.context))
         }
         holder.itemView.setOnClickListener {
-            mOnClickListener?.onClick(this, it, holder.layoutPosition)
+            mOnClickListener?.invoke(this, it, holder.layoutPosition)
         }
         return holder
     }
@@ -74,12 +74,10 @@ open class BasePlateRecyclerAdapter(
         return dataSource.contents.size
     }
 
-    open fun setOnClickListener(listener: OnClickListener) {
+    open fun setOnClickListener(listener: (BasePlateRecyclerAdapter, View, Int) -> Unit) {
         mOnClickListener = listener
     }
 
-    interface OnClickListener {
-        fun onClick(adapter: BasePlateRecyclerAdapter, v: View, position: Int)
 
-    }
+
 }

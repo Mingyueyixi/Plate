@@ -1,5 +1,6 @@
 package com.lu.plate
 
+import android.net.Uri
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -20,5 +21,12 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.lu.plate", appContext.packageName)
+    }
+
+    @Test
+    fun testUri() {
+        var url = "https://www.baidu.com"
+        var uri = Uri.parse(url)
+        println(uri)
     }
 }
