@@ -1,5 +1,6 @@
 apply {
     from rootProject.file('module.gradle')
+    plugin "kotlin-kapt"
 }
 android {
     namespace 'com.lu.plate.ui'
@@ -11,4 +12,10 @@ android {
 
 dependencies {
     implementation project(":plate-core")
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.10'
+    // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
+
 }

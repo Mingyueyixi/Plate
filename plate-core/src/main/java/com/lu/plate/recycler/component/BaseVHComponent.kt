@@ -10,9 +10,9 @@ import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.util.resolve.StyleComposite
 
 abstract class BaseVHComponent(
-    plate: Plate,
+    var plate: Plate,
     itemView: View,
-    templateId: Int
+    var templateId: Int
 ) : BasePlateRecyclerAdapter.BVH(itemView), Component {
 
 

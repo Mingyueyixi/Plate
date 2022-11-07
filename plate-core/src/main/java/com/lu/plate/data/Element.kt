@@ -1,10 +1,14 @@
 package com.lu.plate.data
 
 import androidx.annotation.Keep
+import org.json.JSONObject
 
 @Keep
-class Element<T>(
+open class Element(
+    /** 元素的id，用于区分元素，一般使用不到 */
     var id: Int = 0,
+    /** 元素的样式 */
     var style: Style? = null,
-    var data: MutableList<T> = mutableListOf()
+    /** element上的其他描述数据 */
+    var props: JSONObject? = null
 )
