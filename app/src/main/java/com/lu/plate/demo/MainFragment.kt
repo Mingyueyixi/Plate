@@ -15,8 +15,10 @@ import com.lu.plate.data.Style
 import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.demo.route.AppLinkRouter
+import com.lu.plate.demo.route.RouteLinkResolver
 import com.lu.plate.demo.util.log.LogUtil
 import com.lu.plate.template.CardRVTemplate
+import com.lu.plate.util.GsonUtil
 import org.json.JSONObject
 
 class MainFragment : Fragment() {
@@ -75,7 +77,7 @@ class MainFragment : Fragment() {
                 ),
                 props = JSONObject(
                     """{
-                            "clickLink":"${AppLinkRouter.buildAppWebLink("https://www.biying.com")}",
+                            "clickLink": "${RouteLinkResolver.buildAppWebLink("https://www.biying.com")}",
                              "cardViewEx": {
                                     "cardCornerRadius": "8dp",
                                     "cardElevation": "2dp",
@@ -88,7 +90,26 @@ class MainFragment : Fragment() {
                         }""".trimIndent()
                 )
             ),
-            Content(1, Style(marginTop = "0", marginBottom = "100dp")),
+            Content(
+                1, Style(marginTop = "0", marginBottom = "10dp"), props = JSONObject(
+                    """{
+                    "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_RV_DEMO)}",
+                    "title": "App内跳转",
+                    "subTitle": "visit RVDemoFragment page",
+                    "img": "https://www.baidu.com/more/img/anquan.png"
+                }""".trimIndent()
+                )
+            ),
+            Content(
+                1, Style(marginTop = "0", marginBottom = "10dp"), props = JSONObject(
+                    """{
+                    "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_SCROLL_DEMO)}",
+                    "title": "App内跳转",
+                    "subTitle": "visit ScrollDemoFragment page",
+                    "img": "https://p4.ssl.qhimg.com/t01bcbe50279dfd6f41.png"
+                }""".trimIndent()
+                )
+            ),
             Content(1, Style(marginTop = "0", marginBottom = "0")),
             Content(1, Style(marginTop = "0", marginBottom = "0")),
             Content(
@@ -104,10 +125,13 @@ class MainFragment : Fragment() {
                 )
             )
         ).let {
+            it.forEachIndexed { index, item ->
+                item.id = index
+            }
             mPlateData.contents.addAll(it)
         }
 
-        LogUtils.w(">>>", GsonUtils.toJson(mPlateData))
+        LogUtils.w(">>>", GsonUtil.getPrettyGson().toJson(mPlateData))
     }
 
 }

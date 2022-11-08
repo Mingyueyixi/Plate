@@ -43,7 +43,10 @@ dependencies {
 
     implementation project(":plate-ui")
     implementation project(':plate-core')
-    implementation 'com.blankj:utilcodex:1.31.1'
+    implementation('com.blankj:utilcodex:1.31.1')
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.10'
+
 //    implementation 'com.github.bumptech.glide:glide:4.13.2'
 //    kapt 'com.github.bumptech.glide:compiler:4.13.2'
 

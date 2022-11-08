@@ -13,4 +13,4 @@ class Content(
     var elements: MutableList<Element>? = null,
     /** content上的非公共的描述数据；不同的template，样式、数据存在不同 */
     props: JSONObject? = null
-) : Element(templateId, style, props)
+) : Element(style = style, props = props)

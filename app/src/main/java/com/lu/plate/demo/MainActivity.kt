@@ -1,64 +1,44 @@
 package com.lu.plate.demo
 
 import android.os.Bundle
-import android.util.SparseArray
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.lu.plate.demo.R
 import com.lu.plate.demo.databinding.ActivityMainBinding
+import com.lu.plate.demo.nav.FragmentPageNav
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val PAGE_DEFAULT = "PAGE_DEFAULT"
+        const val PAGE_RV_DEMO = "PAGE_RV_DEMO"
+        const val PAGE_SCROLL_DEMO = "PAGE_SCROLL_DEMO"
+    }
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var pageStateAdapter: PageStateHolder
+    private lateinit var fragmentPageNav: FragmentPageNav
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        pageStateAdapter = PageStateHolder()
+        fragmentPageNav = FragmentPageNav.lifeCreate(this)
         initFragment()
     }
 
     override fun onBackPressed() {
-        var currIndex = pageStateAdapter.fragmentIndex
-        if (currIndex > 0) {
-            switchFragment(currIndex - 1)
+        if (fragmentPageNav.backFragment(this)) {
             return
         }
         super.onBackPressed()
     }
 
-    fun switchFragment(position: Int) {
-        supportFragmentManager.beginTransaction().also {
-            it.add(R.id.fragment_container, pageStateAdapter.getFragment(position))
-            it.show(pageStateAdapter.getFragment(position))
-        }.commitNow()
+
+    fun routeFragment(pageKey: String) {
+        fragmentPageNav.showFragment(this, pageKey)
     }
 
     private fun initFragment() {
-        supportFragmentManager.beginTransaction().also {
-            it.replace(R.id.fragment_container, pageStateAdapter.getFragment(0))
-        }.commitNow()
+        fragmentPageNav.showFragment(this, PAGE_DEFAULT)
     }
 
-    class PageStateHolder {
-        var fragmentIndex = 0
-        var fragments: SparseArray<Fragment?> = SparseArray()
-
-        fun getFragment(position: Int): Fragment {
-            var fragment = fragments[position]
-            if (fragment == null) {
-                fragment = when (position) {
-                    0 -> MainFragment()
-                    else -> MainFragment()
-                }
-                fragments[position] = fragment
-            }
-            return fragment
-        }
-
-    }
 
 }

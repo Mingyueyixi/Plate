@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.blankj.utilcode.util.ActivityUtils
+import com.lu.plate.demo.MainActivity
 import com.lu.plate.demo.util.log.LogUtil
 import com.lu.plate.demo.web.WebViewActivity
 
@@ -11,25 +12,6 @@ import com.lu.plate.demo.web.WebViewActivity
 //路由跳转
 object AppLinkRouter {
     const val AUTHORITY = "schemas.plate.demo"
-
-    fun buildAppLink(path: String, vararg params: Pair<String, String>): Uri? {
-        return Uri.Builder()
-            .authority(AUTHORITY)
-            .scheme("app")
-            .path(path).apply {
-                for (p in params) {
-                    appendQueryParameter(p.first, p.second)
-                }
-            }.build()
-    }
-
-    fun buildAppWebLink(url: String, vararg params: Pair<String, String>): Uri? {
-        val exts = arrayListOf(*params).let {
-            it.add(Pair("url", url))
-            return@let it.toTypedArray()
-        }
-        return buildAppLink(RoutePath.APP_WEB, *exts)
-    }
 
     fun route(context: Context = ActivityUtils.getTopActivity(), link: String?) {
         if (link.isNullOrBlank()) {
@@ -40,6 +22,8 @@ object AppLinkRouter {
         when (scheme) {
             "http", "https" -> {
                 //webview 或其他链接
+                //handleWebViewLink(context, uri)
+                visitWebViewPage(context, link)
             }
             "app" -> {
                 //app内部链接
@@ -56,22 +40,45 @@ object AppLinkRouter {
         }
         var path = uri.path
         when (path) {
-            RoutePath.APP_WEB -> {
+            RouteLinkResolver.RoutePath.APP_WEB -> {
                 handleWebViewLink(context, uri)
             }
+            RouteLinkResolver.RoutePath.APP_MAIN -> handleAppMainLink(context, uri)
             else -> {
                 LogUtil.e("router handle not match path: $path")
             }
         }
     }
 
-    private fun handleWebViewLink(context: Context, uri: Uri) {
-        val webUrl = uri.getQueryParameter("url")
+    private fun visitWebViewPage(context: Context, webUrl: String?) {
+        if (webUrl.isNullOrBlank()) {
+            LogUtil.e("webUrl is Empty")
+            return
+        }
         val intent = Intent(context, WebViewActivity::class.java)
         //fix: some mobile model(slow api) need add a flag to open Activity
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.putExtra(Extra.KEY_WEB_URL, webUrl)
         context.startActivity(intent)
+    }
+
+    private fun handleWebViewLink(context: Context, uri: Uri) {
+        val webUrl = uri.getQueryParameter("url")
+        visitWebViewPage(context, webUrl)
+    }
+
+    private fun handleAppMainLink(context: Context, uri: Uri) {
+        val act = ActivityUtils.getTopActivity()
+        if (act is MainActivity) {
+            uri.getQueryParameter(RouteLinkResolver.LinkParam.KEY_SUB_PAGE)?.let {
+                act.routeFragment(it)
+            }
+        } else {
+            val intent = Intent(act, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            act.startActivity(intent)
+        }
+
     }
 
     class Extra {
@@ -80,10 +87,5 @@ object AppLinkRouter {
         }
     }
 
-    class RoutePath {
-        companion object {
-            const val APP_WEB = "/app/web"
-        }
-    }
 
 }
