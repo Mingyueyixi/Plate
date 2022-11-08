@@ -31,7 +31,7 @@ class WebViewActivity : BaseActivity() {
 
     private fun initWebView() {
         binding.webViewEle.apply {
-            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+//            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
             settings.allowFileAccess = true
             settings.allowContentAccess = true
