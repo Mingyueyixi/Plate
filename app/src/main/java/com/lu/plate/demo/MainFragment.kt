@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
-import com.google.gson.JsonObject
 import com.lu.plate.Plate
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
@@ -17,13 +15,10 @@ import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.demo.route.AppLinkRouter
 import com.lu.plate.demo.route.RouteLinkResolver
-import com.lu.plate.demo.util.log.LogUtil
-import com.lu.plate.template.CardRVTemplate
+import com.lu.plate.template.ImageBarPanelRVTemplate
 import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.JsonObjectKotlin
-import com.lu.plate.util.from
 import com.lu.plate.util.optString
-import org.json.JSONObject
 
 class MainFragment : Fragment() {
     private lateinit var mPlateData: PlateStructure
@@ -31,7 +26,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentRvDemoBinding
     private val plate: Plate by lazy {
         Plate().also {
-            it.register(CardRVTemplate(it, 1))
+            it.register(ImageBarPanelRVTemplate(it, 1))
         }
     }
 
