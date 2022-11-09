@@ -11,9 +11,11 @@ import com.lu.plate.util.resolve.StyleComposite
 
 abstract class BaseVHComponent(
     var plate: Plate,
-    itemView: View,
+    var itemView: View,
     var templateId: Int
-) : BasePlateRecyclerAdapter.BVH(itemView), Component {
+) : Component {
+
+    abstract fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasePlateRecyclerAdapter.BVH
 
 
     open fun onBindView(
@@ -35,7 +37,7 @@ abstract class BaseVHComponent(
         val content = adapter.getItem(position)
         content?.style?.apply {
             //布局参数
-            val lp = itemView.layoutParams
+            val lp = holder.itemView.layoutParams
             if (lp != null) {
                 applyLayoutParams(this, lp)
             }

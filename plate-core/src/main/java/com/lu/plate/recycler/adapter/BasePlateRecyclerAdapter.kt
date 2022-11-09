@@ -19,7 +19,8 @@ open class BasePlateRecyclerAdapter(
     private var mOnClickListener: ((BasePlateRecyclerAdapter, View, Int) -> Unit)? = null
 
 
-    open class BVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    open class BVH(var component: BaseVHComponent, itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
         private val mViews: SparseArray<View?> = SparseArray()
         fun <T : View> getView(id: Int): T? {
             var v = mViews[id]
@@ -44,11 +45,12 @@ open class BasePlateRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BVH {
         val template = plate.templateStore[viewType]
-        val holder = if (template is BaseRVTemplate) {
+        val component = if (template is BaseRVTemplate) {
             template.onCreateComponent(parent, viewType)
         } else {
             InvalidComponent(plate, TextView(parent.context))
         }
+        val holder = component.onCreateViewHolder(parent, viewType)
         holder.itemView.setOnClickListener {
             mOnClickListener?.invoke(this, it, holder.layoutPosition)
         }
@@ -56,11 +58,7 @@ open class BasePlateRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: BVH, position: Int) {
-        if (holder is BaseVHComponent) {
-            holder.onBindView(this, holder, position)
-            return
-        }
-        throw Exception("invalid holder!!!")
+        holder.component.onBindView(this, holder, position)
     }
 
     fun getItem(position: Int): Content? {
@@ -77,7 +75,6 @@ open class BasePlateRecyclerAdapter(
     open fun setOnClickListener(listener: (BasePlateRecyclerAdapter, View, Int) -> Unit) {
         mOnClickListener = listener
     }
-
 
 
 }
