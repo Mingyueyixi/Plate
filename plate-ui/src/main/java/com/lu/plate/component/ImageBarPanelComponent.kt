@@ -12,9 +12,8 @@ import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.optJsonObject
 import com.lu.plate.util.optString
 import com.lu.plate.util.resolve.StyleComposite
-import org.json.JSONObject
 
-class CardComponent(
+class ImageBarPanelComponent(
     plate: Plate,
     itemView: View,
     viewType: Int

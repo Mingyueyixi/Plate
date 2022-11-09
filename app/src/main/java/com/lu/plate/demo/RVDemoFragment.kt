@@ -9,16 +9,15 @@ import com.lu.plate.Plate
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.demo.base.BindingFragment
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
-import com.lu.plate.template.CardRVTemplate
+import com.lu.plate.template.ImageBarPanelRVTemplate
 import com.lu.plate.util.GsonUtil
-import org.json.JSONObject
 import java.io.InputStreamReader
 
 class RVDemoFragment : BindingFragment<FragmentRvDemoBinding>() {
 
     private val plate: Plate by lazy {
         Plate().also {
-            it.register(CardRVTemplate(it, 1))
+            it.register(ImageBarPanelRVTemplate(it, 1))
         }
     }
 
