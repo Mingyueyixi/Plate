@@ -1,6 +1,7 @@
 package com.lu.plate.data
 
 import androidx.annotation.Keep
+import com.google.gson.JsonObject
 import org.json.JSONObject
 
 @Keep
@@ -12,5 +13,5 @@ class Content(
     /** content作为列表视图时的子元素集合，普通视图不需要 */
     var elements: MutableList<Element>? = null,
     /** content上的非公共的描述数据；不同的template，样式、数据存在不同 */
-    props: JSONObject? = null
+    props: JsonObject? = null
 ) : Element(style = style, props = props)

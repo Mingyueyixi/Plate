@@ -1,0 +1,32 @@
+{
+  "contents": [
+    {
+      "templateId": 1,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "必应",
+        "subTitle": "点击访问必应首页",
+        "img": "https://s2.cn.bing.net/th?id=OJ.yRwa0z300b9YpA&w=120&h=160&c=8&rs=1&pid=academic"
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
+    }
+  ],
+  "timeStamp": 0,
+  "type": 0,
+  "version": 0
+}

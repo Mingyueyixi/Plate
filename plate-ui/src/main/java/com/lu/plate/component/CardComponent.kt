@@ -2,12 +2,15 @@ package com.lu.plate.component
 
 import android.view.View
 import com.bumptech.glide.Glide
+import com.google.gson.JsonObject
 import com.lu.plate.Plate
 import com.lu.plate.data.Content
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.recycler.component.BaseVHComponent
 import com.lu.plate.ui.databinding.CardLayoutBinding
 import com.lu.plate.util.GsonUtil
+import com.lu.plate.util.optJsonObject
+import com.lu.plate.util.optString
 import com.lu.plate.util.resolve.StyleComposite
 import org.json.JSONObject
 
@@ -29,14 +32,13 @@ class CardComponent(
             applyHeaderImg(binding, holder, it)
             binding.cardTitle.text = it.optString("title")
             binding.cardTitleSub.text = it.optString("subTitle")
-
         }
     }
 
     private fun applyHeaderImg(
         binding: CardLayoutBinding,
         holder: BasePlateRecyclerAdapter.BVH,
-        props: JSONObject
+        props: JsonObject
     ) {
         val img = props.optString("img") ?: return
         Glide.with(binding.root.context)
@@ -48,9 +50,9 @@ class CardComponent(
     private fun applyCardViewEx(
         binding: CardLayoutBinding,
         holder: BasePlateRecyclerAdapter.BVH,
-        props: JSONObject
+        props: JsonObject
     ) {
-        props.optJSONObject("cardViewEx")?.let {
+        props.optJsonObject("cardViewEx")?.let {
             GsonUtil.fromJson(it.toString(), CardViewEx::class.java)
         }?.let {
             binding.cardViewEle.apply {
@@ -61,7 +63,6 @@ class CardComponent(
                 radius = StyleComposite.size.parseFloat(it.cardCornerRadius)
             }
         }
-
 
     }
 

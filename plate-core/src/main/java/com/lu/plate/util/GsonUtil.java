@@ -152,4 +152,5 @@ public class GsonUtil {
     public static <T> T fromJson(JsonElement json, TypeToken<T> typeOfT) throws JsonSyntaxException {
         return sGson.fromJson(json, typeOfT);
     }
+
 }

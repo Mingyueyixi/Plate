@@ -1,5 +1,7 @@
 package com.lu.plate.util
 
+import com.google.gson.JsonObject
+
 class NullUtil {
     companion object {
 
