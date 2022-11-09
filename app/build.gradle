@@ -52,6 +52,8 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.13.2'
+    // https://mvnrepository.com/artifact/org.json/json
+    testImplementation 'org.json:json:20220320'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

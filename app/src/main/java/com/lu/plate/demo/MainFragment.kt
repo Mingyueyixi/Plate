@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
+import com.google.gson.JsonObject
 import com.lu.plate.Plate
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
@@ -19,6 +20,9 @@ import com.lu.plate.demo.route.RouteLinkResolver
 import com.lu.plate.demo.util.log.LogUtil
 import com.lu.plate.template.CardRVTemplate
 import com.lu.plate.util.GsonUtil
+import com.lu.plate.util.JsonObjectKotlin
+import com.lu.plate.util.from
+import com.lu.plate.util.optString
 import org.json.JSONObject
 
 class MainFragment : Fragment() {
@@ -75,7 +79,7 @@ class MainFragment : Fragment() {
                     background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")),
                     marginBottom = "100"
                 ),
-                props = JSONObject(
+                props = JsonObjectKotlin.from(
                     """{
                             "clickLink": "${RouteLinkResolver.buildAppWebLink("https://www.biying.com")}",
                              "cardViewEx": {
@@ -91,7 +95,7 @@ class MainFragment : Fragment() {
                 )
             ),
             Content(
-                1, Style(marginTop = "0", marginBottom = "10dp"), props = JSONObject(
+                1, Style(marginTop = "0", marginBottom = "10dp"), props = JsonObjectKotlin.from(
                     """{
                     "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_RV_DEMO)}",
                     "title": "App内跳转",
@@ -101,7 +105,7 @@ class MainFragment : Fragment() {
                 )
             ),
             Content(
-                1, Style(marginTop = "0", marginBottom = "10dp"), props = JSONObject(
+                1, Style(marginTop = "0", marginBottom = "10dp"), props = JsonObjectKotlin.from(
                     """{
                     "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_SCROLL_DEMO)}",
                     "title": "App内跳转",
