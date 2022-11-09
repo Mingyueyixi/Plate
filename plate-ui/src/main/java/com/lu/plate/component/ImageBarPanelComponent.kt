@@ -1,6 +1,7 @@
 package com.lu.plate.component
 
 import android.view.View
+import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import com.lu.plate.Plate
@@ -18,6 +19,12 @@ class ImageBarPanelComponent(
     itemView: View,
     viewType: Int
 ) : BaseVHComponent(plate, itemView, viewType) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BasePlateRecyclerAdapter.BVH {
+        return BasePlateRecyclerAdapter.BVH(this, itemView)
+    }
 
     override fun onBindView(
         adapter: BasePlateRecyclerAdapter,
