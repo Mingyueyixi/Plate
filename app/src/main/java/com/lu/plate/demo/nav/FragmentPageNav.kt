@@ -8,20 +8,42 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.lu.plate.demo.*
 
-class FragmentPageNav private constructor() : LifecycleEventObserver {
+class FragmentPageNav private constructor(
+    private val layoutResId: Int,
+    var isLazyNav: Boolean = false
+) :
+    LifecycleEventObserver {
     val fragmentList = arrayListOf<Fragment?>()
 
     companion object {
-        fun lifeCreate(act: FragmentActivity): FragmentPageNav {
-            val ret = FragmentPageNav()
-            act.lifecycle.addObserver(ret)
-            return ret
+        fun from(layoutResId: Int): Builder {
+            return Builder(layoutResId)
+        }
+    }
+
+    class Builder(
+        private var layoutResId: Int,
+        private var lifeActivity: FragmentActivity? = null,
+        private var isLazyNav: Boolean = false,
+    ) {
+
+        fun setLazyNav(isLazyNav: Boolean): Builder {
+            this.isLazyNav = isLazyNav
+            return this
+        }
+
+        fun setLifeActivity(activity: FragmentActivity): Builder {
+            lifeActivity = activity
+            return this
         }
 
         fun create(): FragmentPageNav {
-            return FragmentPageNav()
+            return FragmentPageNav(layoutResId, isLazyNav).also {
+                lifeActivity?.lifecycle?.addObserver(it)
+            }
         }
     }
+
 
     private fun getFragment(tag: String): Fragment {
         var frag: Fragment? = fragmentList.firstOrNull {
@@ -31,7 +53,7 @@ class FragmentPageNav private constructor() : LifecycleEventObserver {
             frag = when (tag) {
                 MainActivity.PAGE_DEFAULT -> MainFragment()
                 MainActivity.PAGE_RV_DEMO -> RVDemoFragment()
-                MainActivity.PAGE_SCROLL_DEMO -> ScrollDemoFragment()
+                MainActivity.PAGE_SCROLL_DEMO -> SVDemoFragment()
                 else -> MainFragment()
             }
         }
@@ -45,14 +67,23 @@ class FragmentPageNav private constructor() : LifecycleEventObserver {
     fun showFragment(act: AppCompatActivity, pageKey: String) {
         act.supportFragmentManager.beginTransaction().also {
             val frag = getFragment(pageKey)
-            getCurrFragment()?.let { curr ->
-                it.hide(curr)
-            }
-            if (frag.isAdded) {
-                it.show(frag)
-                fragmentList.remove(frag)
+            if (isLazyNav) {
+                getCurrFragment()?.let { curr ->
+                    it.hide(curr)
+                }
+                if (frag.isAdded) {
+                    it.show(frag)
+                    fragmentList.remove(frag)
+                } else {
+                    it.add(layoutResId, frag, pageKey)
+                }
             } else {
-                it.add(R.id.fragment_container, frag, pageKey)
+                if (frag.isAdded) {
+                    it.show(frag)
+                    fragmentList.remove(frag)
+                } else {
+                    it.replace(layoutResId, frag, pageKey)
+                }
             }
             fragmentList.add(frag)
         }.commitNow()
@@ -64,7 +95,11 @@ class FragmentPageNav private constructor() : LifecycleEventObserver {
                 it.remove(last)
             }
             val backFrag = fragmentList.lastOrNull() ?: return false
-            it.show(backFrag)
+            if (isLazyNav) {
+                it.show(backFrag)
+            } else {
+                it.replace(layoutResId, backFrag)
+            }
             it.commitNow()
             return true
         }

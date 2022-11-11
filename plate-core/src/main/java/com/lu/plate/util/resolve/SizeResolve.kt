@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.lu.plate.Plate
 import com.lu.plate.util.SizeUtil
 
-class SizeResolve {
+open class SizeResolve {
     companion object {
         const val WRAP_CONTENT = "wrap_content"
         const val MATCH_PARENT = "match_parent"

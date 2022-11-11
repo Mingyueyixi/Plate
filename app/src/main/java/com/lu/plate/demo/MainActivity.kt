@@ -20,7 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fragmentPageNav = FragmentPageNav.lifeCreate(this)
+        fragmentPageNav = FragmentPageNav.from(R.id.fragment_container)
+            .setLifeActivity(this)
+            .setLazyNav(false)
+            .create()
+
         initFragment()
     }
 

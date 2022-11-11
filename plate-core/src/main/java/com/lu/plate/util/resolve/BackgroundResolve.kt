@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.lu.plate.data.drawable.ShapeBackground
 
-class BackgroundResolve {
+open class BackgroundResolve {
 
     open fun create(sb: ShapeBackground): GradientDrawable {
         val drawable = GradientDrawable()

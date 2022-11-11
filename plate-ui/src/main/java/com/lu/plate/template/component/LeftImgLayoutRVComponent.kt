@@ -1,24 +1,23 @@
-package com.lu.plate.component
+package com.lu.plate.template.component
 
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import com.lu.plate.Plate
-import com.lu.plate.data.Content
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
-import com.lu.plate.recycler.component.BaseVHComponent
-import com.lu.plate.ui.databinding.CardLayoutBinding
+import com.lu.plate.recycler.component.BaseRVComponent
+import com.lu.plate.ui.databinding.LeftImgLayoutImgBinding
 import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.optJsonObject
 import com.lu.plate.util.optString
 import com.lu.plate.util.resolve.StyleComposite
 
-class ImageBarPanelComponent(
+class LeftImgLayoutRVComponent(
     plate: Plate,
     itemView: View,
     viewType: Int
-) : BaseVHComponent(plate, itemView, viewType) {
+) : BaseRVComponent(plate, itemView, viewType) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -32,21 +31,21 @@ class ImageBarPanelComponent(
         position: Int
     ) {
         super.onBindView(adapter, holder, position)
-        val binding = CardLayoutBinding.bind(holder.itemView)
+        val binding = LeftImgLayoutImgBinding.bind(holder.itemView)
         adapter.getItem(position)?.props?.let {
-            applyCardViewEx(binding, holder, it)
-            applyHeaderImg(binding, holder, it)
+            applyCardViewEx(binding, it)
+            applyHeaderImg(binding, it)
             binding.cardTitle.text = it.optString("title")
             binding.cardTitleSub.text = it.optString("subTitle")
         }
+
     }
 
     private fun applyHeaderImg(
-        binding: CardLayoutBinding,
-        holder: BasePlateRecyclerAdapter.BVH,
+        binding: LeftImgLayoutImgBinding,
         props: JsonObject
     ) {
-        val img = props.optString("img") ?: return
+        val img = props.optString("img").ifBlank { null } ?: return
         Glide.with(binding.root.context)
             .load(img.trim())
             .disallowHardwareConfig()
@@ -54,8 +53,7 @@ class ImageBarPanelComponent(
     }
 
     private fun applyCardViewEx(
-        binding: CardLayoutBinding,
-        holder: BasePlateRecyclerAdapter.BVH,
+        binding: LeftImgLayoutImgBinding,
         props: JsonObject
     ) {
         props.optJsonObject("cardViewEx")?.let {
@@ -72,9 +70,6 @@ class ImageBarPanelComponent(
 
     }
 
-    override fun refresh(data: Content) {
-
-    }
 
     private class CardViewEx(
         var cardBackgroundColor: String? = null,

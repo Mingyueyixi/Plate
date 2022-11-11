@@ -1,16 +1,14 @@
 package com.lu.plate.recycler.adapter
 
-import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lu.plate.Plate
-import com.lu.plate.recycler.component.BaseVHComponent
-import com.lu.plate.recycler.component.InvalidComponent
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
-import com.lu.plate.template.BaseRVTemplate
+import com.lu.plate.template.BaseTemplate
+import com.lu.plate.template.component.NotImplComponent
+import com.lu.plate.template.component.RVComponent
 
 open class BasePlateRecyclerAdapter(
     var plate: Plate,
@@ -18,19 +16,7 @@ open class BasePlateRecyclerAdapter(
 ) : RecyclerView.Adapter<BasePlateRecyclerAdapter.BVH>() {
     private var mOnClickListener: ((BasePlateRecyclerAdapter, View, Int) -> Unit)? = null
 
-
-    open class BVH(var component: BaseVHComponent, itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        private val mViews: SparseArray<View?> = SparseArray()
-        fun <T : View> getView(id: Int): T? {
-            var v = mViews[id]
-            if (v == null) {
-                v = itemView.findViewById(id)
-                mViews.put(id, v)
-            }
-            return v as T?
-        }
-    }
+    open class BVH(var component: RVComponent, itemView: View) : RecyclerView.ViewHolder(itemView)
 
     open fun refreshView(vo: PlateStructure) {
         dataSource = vo
@@ -45,10 +31,10 @@ open class BasePlateRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BVH {
         val template = plate.templateStore[viewType]
-        val component = if (template is BaseRVTemplate) {
-            template.onCreateComponent(parent, viewType)
+        val component = if (template is BaseTemplate) {
+            template.createRVComponent(parent, viewType)
         } else {
-            InvalidComponent(plate, TextView(parent.context))
+            NotImplComponent.INSTANCE
         }
         val holder = component.onCreateViewHolder(parent, viewType)
         holder.itemView.setOnClickListener {

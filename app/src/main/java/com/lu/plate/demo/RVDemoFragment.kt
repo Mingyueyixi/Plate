@@ -9,7 +9,7 @@ import com.lu.plate.Plate
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.demo.base.BindingFragment
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
-import com.lu.plate.template.ImageBarPanelRVTemplate
+import com.lu.plate.template.LeftImgLayoutTemplate
 import com.lu.plate.util.GsonUtil
 import java.io.InputStreamReader
 
@@ -17,7 +17,7 @@ class RVDemoFragment : BindingFragment<FragmentRvDemoBinding>() {
 
     private val plate: Plate by lazy {
         Plate().also {
-            it.register(ImageBarPanelRVTemplate(it, 1))
+            it.register(LeftImgLayoutTemplate(it, 1))
         }
     }
 
@@ -34,6 +34,10 @@ class RVDemoFragment : BindingFragment<FragmentRvDemoBinding>() {
     }
 
     private fun initData() {
+        mockRequestRemoteData()
+    }
+
+    private fun mockRequestRemoteData() {
         context?.assets?.open("plate_sample_rv.json")?.let {
             InputStreamReader(it).let { reader ->
                 mPlateStructure = GsonUtil.fromJson(reader, PlateStructure::class.java)
@@ -42,6 +46,7 @@ class RVDemoFragment : BindingFragment<FragmentRvDemoBinding>() {
             it.close()
         }
     }
+
 
     private fun initView() {
         binding.rvContent.apply {

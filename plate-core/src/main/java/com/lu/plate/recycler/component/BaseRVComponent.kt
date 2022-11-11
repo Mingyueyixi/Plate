@@ -4,21 +4,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import com.lu.plate.Plate
-import com.lu.plate.component.Component
+import com.lu.plate.template.component.RVComponent
 import com.lu.plate.data.Style
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.util.resolve.StyleComposite
 
-abstract class BaseVHComponent(
+/***
+ * apply style for component
+ */
+abstract class BaseRVComponent(
     var plate: Plate,
     var itemView: View,
     var templateId: Int
-) : Component {
-
-    abstract fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasePlateRecyclerAdapter.BVH
+) : RVComponent {
 
 
-    open fun onBindView(
+    override fun onBindView(
         adapter: BasePlateRecyclerAdapter,
         holder: BasePlateRecyclerAdapter.BVH,
         position: Int
@@ -29,7 +30,7 @@ abstract class BaseVHComponent(
     /**
      * 设置content的样式
      */
-    private fun applyContentStyle(
+    protected open fun applyContentStyle(
         adapter: BasePlateRecyclerAdapter,
         holder: BasePlateRecyclerAdapter.BVH,
         position: Int
