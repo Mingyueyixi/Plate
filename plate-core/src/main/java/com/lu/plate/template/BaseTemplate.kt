@@ -7,4 +7,6 @@ open class BaseTemplate(var plate: Plate, private val templateId: Int) : Templat
     override fun getTemplateId(): Int {
         return templateId
     }
+
+
 }

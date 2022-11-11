@@ -49,7 +49,7 @@ fun JsonElement.from(jsonText: String): JsonElement? {
     return GsonUtil.fromJson(jsonText, JsonElement::class.java)
 }
 
-fun JsonObject.getString(memberName: String): String {
+fun JsonObject.getString(memberName: String?): String {
     return this.get(memberName).asString
 }
 

@@ -1,0 +1,135 @@
+{
+  "contents": [
+    {
+      "templateId": 2,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "购物",
+        "subTitle": "2022/11/11",
+        "img": {
+          "value": "https://img-operation.csdnimg.cn/csdn/silkroad/img/1667811293342.gif",
+          "type": "net"
+        },
+        "fallbackImg": {
+          "value": "xiaobing.gif",
+          "type": "raw"
+        }
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
+    },
+    {
+      "templateId": 2,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "购物",
+        "subTitle": "2022/11/11",
+        "img": {
+          "value": "https://img10.360buyimg.com/n2/jfs/t1/86089/9/21408/133253/62074f7bEd90961cb/09de52339a7649a1.jpg",
+          "type": "net"
+        },
+        "fallbackImg": {
+          "value": "xiaobing.gif",
+          "type": "raw"
+        }
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
+    },
+    {
+      "templateId": 2,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "购物",
+        "subTitle": "2022/11/11",
+        "img": {
+          "value": "https://cms2-5.ocj.com.cn/img/0b0739c0-45e9-40c3-861b-3e94443fd7da.jpg",
+          "type": "net"
+        },
+        "fallbackImg": {
+          "value": "xiaobing.gif",
+          "type": "raw"
+        }
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
+    },
+    {
+      "templateId": 2,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "购物",
+        "subTitle": "2022/11/11",
+        "img": {
+          "value": "https://cdnimg.ocj.com.cn/item/product/2021/6/main_1622977648671_264L.jpg",
+          "type": "net"
+        },
+        "fallbackImg": {
+          "value": "xiaobing.gif",
+          "type": "raw"
+        }
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
+    }
+  ],
+  "timeStamp": 0,
+  "type": 0,
+  "version": 0
+}

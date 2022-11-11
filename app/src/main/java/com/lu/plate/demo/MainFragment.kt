@@ -15,7 +15,7 @@ import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.demo.route.AppLinkRouter
 import com.lu.plate.demo.route.RouteLinkResolver
-import com.lu.plate.template.ImageBarPanelRVTemplate
+import com.lu.plate.template.LeftImgLayoutTemplate
 import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.JsonObjectKotlin
 import com.lu.plate.util.optString
@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentRvDemoBinding
     private val plate: Plate by lazy {
         Plate().also {
-            it.register(ImageBarPanelRVTemplate(it, 1))
+            it.register(LeftImgLayoutTemplate(it, 1))
         }
     }
 

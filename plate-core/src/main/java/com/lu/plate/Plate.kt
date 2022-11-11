@@ -5,6 +5,7 @@ import com.lu.plate.data.PlateStructure
 import com.lu.plate.exception.TemplateException
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.template.Template
+import com.lu.plate.util.resolve.BackgroundResolve
 import com.lu.plate.util.resolve.StyleComposite
 
 class Plate {
