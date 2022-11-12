@@ -16,8 +16,6 @@ import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.demo.route.AppLinkRouter
 import com.lu.plate.demo.route.RouteLinkResolver
-import com.lu.plate.template.AdBannerTemplate
-import com.lu.plate.template.LeftImgLayoutTemplate
 import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.JsonObjectKotlin
 import com.lu.plate.util.optString
@@ -27,20 +25,13 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentRvDemoBinding
     private val plate: Plate by lazy {
-        Plate().also {
-            it.register(LeftImgLayoutTemplate(it, 1))
-            //it.register(TopImgLayoutTemplate(it, 2))
-            it.register(AdBannerTemplate(it, 3))
-        }
+        PlateManager.createWithCommon()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         super.onCreate(savedInstanceState)
-        activity?.application?.let {
-            Plate.doInit(it)
-        }
         binding = FragmentRvDemoBinding.inflate(layoutInflater)
         initData()
         initView()
@@ -54,7 +45,7 @@ class MainFragment : Fragment() {
                 LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         }
 
-        atapter.setOnClickListener { adapter, v, p ->
+        atapter.setOnClickListener { adapter, _, p ->
             val content = adapter.getItem(p)
             content?.props?.optString("clickLink").let {
                 //跳转链接
@@ -74,18 +65,34 @@ class MainFragment : Fragment() {
                 3,
                 Style(marginTop = "0", marginBottom = "16dp"),
                 elements = arrayListOf(
-                    Element(props = JsonObjectKotlin.from("""{
+                    Element(
+                        props = JsonObjectKotlin.from(
+                            """{
                         "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.mXMQFcfiRz13HB2jLrTUPQHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
-                    }""".trimIndent())),
-                    Element(props = JsonObjectKotlin.from("""{
+                    }""".trimIndent()
+                        )
+                    ),
+                    Element(
+                        props = JsonObjectKotlin.from(
+                            """{
                         "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.l0UBlPzbItR94T6REJQ79wHaJQ&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
-                    }""".trimIndent())),
-                    Element(props = JsonObjectKotlin.from("""{
+                    }""".trimIndent()
+                        )
+                    ),
+                    Element(
+                        props = JsonObjectKotlin.from(
+                            """{
                         "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.G3neuy5XDKCfUKSSrC2FSAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
-                    }""".trimIndent())),
-                    Element(props = JsonObjectKotlin.from("""{
+                    }""".trimIndent()
+                        )
+                    ),
+                    Element(
+                        props = JsonObjectKotlin.from(
+                            """{
                         "img": "https://tse1-mm.cn.bing.net/th/id/OIP-C.ND5vWa5UAXCp289N7lCUIwHaEo?w=297&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                    }""".trimIndent())),
+                    }""".trimIndent()
+                        )
+                    ),
 
                     )
             ),

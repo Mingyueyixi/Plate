@@ -6,7 +6,7 @@ class App : Application() {
     companion object {
         @JvmStatic
         val INSTANCE: App
-            get() = sInstance!!
+            get() = sInstance
 
         @JvmStatic
         private lateinit var sInstance: App
