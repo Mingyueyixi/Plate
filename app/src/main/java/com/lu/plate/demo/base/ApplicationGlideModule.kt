@@ -13,9 +13,9 @@ import java.lang.reflect.Proxy
 @GlideModule
 open class ApplicationGlideModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        if (BuildConfig.DEBUG) {
-            builder.setLogLevel(Log.VERBOSE)
-        }
+//        if (BuildConfig.DEBUG) {
+//            builder.setLogLevel(Log.VERBOSE)
+//        }
         super.applyOptions(context, builder)
     }
 }
