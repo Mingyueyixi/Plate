@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.lu.plate.Plate
 import com.lu.plate.data.Content
+import com.lu.plate.data.Element
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.data.Style
 import com.lu.plate.data.drawable.ShapeBackground
 import com.lu.plate.demo.databinding.FragmentRvDemoBinding
 import com.lu.plate.demo.route.AppLinkRouter
 import com.lu.plate.demo.route.RouteLinkResolver
+import com.lu.plate.template.AdBannerTemplate
 import com.lu.plate.template.LeftImgLayoutTemplate
 import com.lu.plate.util.GsonUtil
 import com.lu.plate.util.JsonObjectKotlin
@@ -27,14 +29,14 @@ class MainFragment : Fragment() {
     private val plate: Plate by lazy {
         Plate().also {
             it.register(LeftImgLayoutTemplate(it, 1))
+            //it.register(TopImgLayoutTemplate(it, 2))
+            it.register(AdBannerTemplate(it, 3))
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         super.onCreate(savedInstanceState)
         activity?.application?.let {
             Plate.doInit(it)
@@ -46,14 +48,14 @@ class MainFragment : Fragment() {
     }
 
     private fun initView() {
-        var atapter = plate.createRecyclerAdapter(mPlateData).also {
+        val atapter = plate.createRecyclerAdapter(mPlateData).also {
             binding.rvContent.adapter = it
             binding.rvContent.layoutManager =
                 LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         }
 
         atapter.setOnClickListener { adapter, v, p ->
-            var content = adapter.getItem(p)
+            val content = adapter.getItem(p)
             content?.props?.optString("clickLink").let {
                 //跳转链接
                 activity?.let { act ->
@@ -69,18 +71,35 @@ class MainFragment : Fragment() {
         mPlateData = PlateStructure()
         arrayListOf(
             Content(
-                1,
-                Style(
+                3,
+                Style(marginTop = "0", marginBottom = "16dp"),
+                elements = arrayListOf(
+                    Element(props = JsonObjectKotlin.from("""{
+                        "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.mXMQFcfiRz13HB2jLrTUPQHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+                    }""".trimIndent())),
+                    Element(props = JsonObjectKotlin.from("""{
+                        "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.l0UBlPzbItR94T6REJQ79wHaJQ&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+                    }""".trimIndent())),
+                    Element(props = JsonObjectKotlin.from("""{
+                        "img": "https://ts3.cn.mm.bing.net/th?id=OIP-C.G3neuy5XDKCfUKSSrC2FSAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+                    }""".trimIndent())),
+                    Element(props = JsonObjectKotlin.from("""{
+                        "img": "https://tse1-mm.cn.bing.net/th/id/OIP-C.ND5vWa5UAXCp289N7lCUIwHaEo?w=297&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    }""".trimIndent())),
+
+                    )
+            ),
+            Content(
+                1, Style(
                     background = ShapeBackground(solid = ShapeBackground.Solid("#FFAA3399")),
                     marginBottom = "100"
-                ),
-                props = JsonObjectKotlin.from(
+                ), props = JsonObjectKotlin.from(
                     """{
                             "clickLink": "${RouteLinkResolver.buildAppWebLink("https://www.biying.com")}",
                              "cardViewEx": {
                                     "cardCornerRadius": "8dp",
                                     "cardElevation": "2dp",
-                                    "strokeWidth": "10dp",
+                                    "strokeWidth": "16dp",
                                     "cardBackgroundColor": "#FFeebbcc"
                                 },
                              "title": "必应",
@@ -90,7 +109,7 @@ class MainFragment : Fragment() {
                 )
             ),
             Content(
-                1, Style(marginTop = "0", marginBottom = "10dp"), props = JsonObjectKotlin.from(
+                1, Style(marginTop = "0", marginBottom = "16dp"), props = JsonObjectKotlin.from(
                     """{
                     "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_RV_DEMO)}",
                     "title": "App内跳转",
@@ -100,7 +119,7 @@ class MainFragment : Fragment() {
                 )
             ),
             Content(
-                1, Style(marginTop = "0", marginBottom = "10dp"), props = JsonObjectKotlin.from(
+                1, Style(marginTop = "0", marginBottom = "16dp"), props = JsonObjectKotlin.from(
                     """{
                     "clickLink": "${RouteLinkResolver.buildAppMainLink(MainActivity.PAGE_SCROLL_DEMO)}",
                     "title": "App内跳转",
@@ -109,17 +128,15 @@ class MainFragment : Fragment() {
                 }""".trimIndent()
                 )
             ),
-            Content(1, Style(marginTop = "0", marginBottom = "0")),
-            Content(1, Style(marginTop = "0", marginBottom = "0")),
+            Content(1, Style(marginTop = "0", marginBottom = "16dp")),
             Content(
-                1,
-                Style(
+                1, Style(
                     marginTop = "0",
                     marginBottom = "0",
-                    paddingBottom = "50dp",
+                    paddingBottom = "16dp",
                     background = ShapeBackground(
                         solid = ShapeBackground.Solid("#FF00ee33"),
-                        stroke = ShapeBackground.Stroke(width = "10dp"),
+                        stroke = ShapeBackground.Stroke(width = "16dp"),
                     )
                 )
             )
