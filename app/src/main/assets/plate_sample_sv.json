@@ -63,6 +63,37 @@
         },
         "marginBottom": "100"
       }
+    },    {
+      "templateId": 2,
+      "id": 0,
+      "props": {
+        "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
+        "cardViewEx": {
+          "cardCornerRadius": "8dp",
+          "cardElevation": "2dp",
+          "strokeWidth": "10dp",
+          "cardBackgroundColor": "#FFeebbcc"
+        },
+        "title": "购物",
+        "subTitle": "2022/11/11",
+        "img": {
+          "value": "http://picview.iituku.com/content/20221111/tHsVB8PB4O1QNyStkhZxoAu6.jpg",
+          "type": "net"
+        },
+        "fallbackImg": {
+          "value": "xiaobing.gif",
+          "type": "raw"
+        }
+      },
+      "style": {
+        "background": {
+          "shape": "rectangle",
+          "solid": {
+            "color": "#FFAA3399"
+          }
+        },
+        "marginBottom": "100"
+      }
     },
     {
       "templateId": 2,

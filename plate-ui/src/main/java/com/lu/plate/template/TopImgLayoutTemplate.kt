@@ -11,7 +11,7 @@ import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.template.component.SVComponent
 import com.lu.plate.ui.databinding.TopImageLayoutBinding
-import com.lu.plate.util.GlideUtil
+import com.lu.plate.util.ImageUtil
 import com.lu.plate.util.optJsonObject
 import com.lu.plate.util.optString
 
@@ -43,6 +43,7 @@ class TopImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate, 
                         content.props?.optJsonObject("fallbackImg")?.let { fallbackImg ->
                             val fallbackUrl = fallbackImg.optString("value")
                             val fallbackTy = fallbackImg.optString("type")
+                            //retry load image
                             loadImage(binding.ivTopFrame, fallbackUrl, fallbackTy)
                         }
 
@@ -60,11 +61,11 @@ class TopImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate, 
                 imageView: ImageView,
                 value: String,
                 ty: String,
-                onFailFunc: GlideUtil.OnLoadFailedListener? = null
+                onFailFunc: ImageUtil.OnLoadFailedListener? = null
             ) {
                 when (ty) {
                     "net" -> {
-                        GlideUtil.with(parent)
+                        ImageUtil.with(parent)
                             .onFailed(onFailFunc)
                             .onSetResFunc {
                                 fitRatioByLayoutParams(imageView, it)
@@ -72,15 +73,23 @@ class TopImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate, 
                             .load(imageView, value)
                     }
                     "raw" -> {
+                        val idName = value.lastIndexOf(".").let {
+                            if (it > -1) {
+                                value.substring(0, it)
+                            } else {
+                                value
+                            }
+                        }
+
                         val resId = parent.context.resources.getIdentifier(
-                            value,
+                            idName,
                             "raw",
                             parent.context.packageName
                         )
                         if (resId == 0) {
                             return
                         }
-                        GlideUtil.with(parent)
+                        ImageUtil.with(parent)
                             .onFailed(onFailFunc)
                             .onSetResFunc {
                                 fitRatioByLayoutParams(imageView, it)
