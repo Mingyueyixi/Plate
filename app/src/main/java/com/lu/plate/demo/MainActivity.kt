@@ -2,11 +2,12 @@ package com.lu.plate.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.lu.plate.demo.base.BaseActivity
 import com.lu.plate.demo.databinding.ActivityMainBinding
 import com.lu.plate.demo.nav.FragmentPageNav
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     companion object {
         const val PAGE_DEFAULT = "PAGE_DEFAULT"
         const val PAGE_RV_DEMO = "PAGE_RV_DEMO"
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PlateManager.doInit(this)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         fragmentPageNav = FragmentPageNav.from(R.id.fragment_container)

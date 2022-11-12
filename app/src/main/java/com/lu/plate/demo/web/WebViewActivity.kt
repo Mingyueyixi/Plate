@@ -29,6 +29,7 @@ class WebViewActivity : BaseActivity() {
 
     }
 
+    @Suppress("DEPRECATION")
     private fun initWebView() {
         binding.webViewEle.apply {
 //            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
@@ -47,6 +48,8 @@ class WebViewActivity : BaseActivity() {
             webViewClient = object : WebViewClient() {
 
 
+
+                @Deprecated("")
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                     val uri = Uri.parse(url)
                     when (uri.scheme) {
@@ -62,6 +65,7 @@ class WebViewActivity : BaseActivity() {
                     LogUtil.d("onPageFinished: $url")
                 }
 
+                @Deprecated("")
                 override fun onReceivedError(
                     view: WebView?,
                     errorCode: Int,
@@ -92,6 +96,7 @@ class WebViewActivity : BaseActivity() {
             }
 
             webChromeClient = object : WebChromeClient() {
+                @Deprecated("")
                 override fun onConsoleMessage(
                     message: String?,
                     lineNumber: Int,

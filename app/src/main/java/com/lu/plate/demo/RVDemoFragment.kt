@@ -16,9 +16,7 @@ import java.io.InputStreamReader
 class RVDemoFragment : BindingFragment<FragmentRvDemoBinding>() {
 
     private val plate: Plate by lazy {
-        Plate().also {
-            it.register(LeftImgLayoutTemplate(it, 1))
-        }
+        PlateManager.createWithCommon()
     }
 
     private lateinit var mPlateStructure: PlateStructure

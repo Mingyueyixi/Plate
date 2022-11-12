@@ -68,13 +68,13 @@ object AppLinkRouter {
     }
 
     private fun handleAppMainLink(context: Context, uri: Uri) {
-        val act = ActivityUtils.getTopActivity()
+        var act = ActivityUtils.getTopActivity()
         if (act is MainActivity) {
             uri.getQueryParameter(RouteLinkResolver.LinkParam.KEY_SUB_PAGE)?.let {
                 act.routeFragment(it)
             }
         } else {
-            val intent = Intent(act, MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             act.startActivity(intent)
         }

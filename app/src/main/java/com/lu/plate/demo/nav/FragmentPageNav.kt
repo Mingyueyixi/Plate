@@ -90,7 +90,7 @@ class FragmentPageNav private constructor(
     }
 
     fun backFragment(act: AppCompatActivity): Boolean {
-        return act.supportFragmentManager.beginTransaction().let {
+        act.supportFragmentManager.beginTransaction().let {
             fragmentList.removeLastOrNull()?.let { last ->
                 it.remove(last)
             }
@@ -103,6 +103,7 @@ class FragmentPageNav private constructor(
             it.commitNow()
             return true
         }
+
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {

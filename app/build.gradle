@@ -18,6 +18,10 @@ android {
     }
 
     buildTypes {
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -50,6 +54,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
     testImplementation 'junit:junit:4.13.2'
     // https://mvnrepository.com/artifact/org.json/json

@@ -23,11 +23,7 @@ import java.io.InputStreamReader
 class SVDemoFragment : BindingFragment<FragmentSvDemoBinding>() {
     private lateinit var mPlateStructure: PlateStructure
     private val plate: Plate by lazy {
-        Plate().also {
-            it.register(
-                TopImgLayoutTemplate(it, 2)
-            )
-        }
+        PlateManager.createWithCommon()
     }
 
     override fun onCreateView(
@@ -58,7 +54,7 @@ class SVDemoFragment : BindingFragment<FragmentSvDemoBinding>() {
 
     private fun initView() {
         val adapter = ScrollLayoutAdapter(plate, mPlateStructure)
-        adapter.setOnClickListener { adapter, view, content, position ->
+        adapter.setOnClickListener { _, _, content, _ ->
             content?.props?.optString("clickLink").let {
                 AppLinkRouter.route(link = it)
             }

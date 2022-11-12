@@ -1,6 +1,7 @@
 package com.lu.plate
 
 import android.app.Application
+import android.content.Context
 import com.lu.plate.data.PlateStructure
 import com.lu.plate.exception.TemplateException
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
@@ -12,9 +13,9 @@ class Plate {
     val templateStore = mutableMapOf<Int, Template>()
 
     companion object {
-        lateinit var context: Application
-        fun doInit(ctx: Application) {
-            context = ctx
+        lateinit var context: Context
+        fun doInit(ctx: Context) {
+            context = ctx.applicationContext
         }
     }
 
