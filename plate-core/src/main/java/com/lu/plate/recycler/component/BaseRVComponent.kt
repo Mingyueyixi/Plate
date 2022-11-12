@@ -14,7 +14,6 @@ import com.lu.plate.util.resolve.StyleComposite
  */
 abstract class BaseRVComponent(
     var plate: Plate,
-    var itemView: View,
     var templateId: Int
 ) : RVComponent {
 

@@ -7,8 +7,8 @@ import com.lu.plate.data.Content
 import com.lu.plate.recycler.adapter.BasePlateRecyclerAdapter
 import com.lu.plate.recycler.component.BaseRVComponent
 
-class TextComponent(plate: Plate, itemView: View, templateId: Int) :
-    BaseRVComponent(plate, itemView, templateId) {
+class TextComponent(plate: Plate, templateId: Int) :
+    BaseRVComponent(plate, templateId) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
