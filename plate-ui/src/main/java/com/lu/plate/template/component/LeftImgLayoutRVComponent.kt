@@ -1,5 +1,6 @@
 package com.lu.plate.template.component
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -15,14 +16,15 @@ import com.lu.plate.util.resolve.StyleComposite
 
 class LeftImgLayoutRVComponent(
     plate: Plate,
-    itemView: View,
     viewType: Int
-) : BaseRVComponent(plate, itemView, viewType) {
+) : BaseRVComponent(plate, viewType) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): BasePlateRecyclerAdapter.BVH {
-        return BasePlateRecyclerAdapter.BVH(this, itemView)
+        val binding =
+            LeftImgLayoutImgBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BasePlateRecyclerAdapter.BVH(this, binding.root)
     }
 
     override fun onBindView(

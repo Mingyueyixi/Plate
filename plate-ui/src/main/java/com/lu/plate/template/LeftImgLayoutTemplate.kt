@@ -10,9 +10,7 @@ import com.lu.plate.ui.databinding.LeftImgLayoutImgBinding
 class LeftImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate, templateId) {
 
     override fun createRVComponent(parent: ViewGroup, viewType: Int): RVComponent {
-        val binding =
-            LeftImgLayoutImgBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LeftImgLayoutRVComponent(plate, binding.root, viewType)
+        return LeftImgLayoutRVComponent(plate, viewType)
     }
 
 }
