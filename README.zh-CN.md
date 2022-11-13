@@ -1,37 +1,46 @@
 # Plate
 
-[中文文档](README.zh-CN.md)
+[English Document](README.md)
 
-Use for Android, a simple framework for  implementing dynamic configuration page.
+Plate 是一个 `Android` 动态配置页面的基础框架。
 
 --- 
 
-## Feature
+## 特点
 
-Suitable for dynamically configured pages, such as' active pages', 'operation pages',' home pages', and other pages that require from remote. 
+Plate 适用于动态配置的页面，例如`活动页`、`运营页` 、`主页`等需要服务端决定的页面。
 
-- define remote view data
-- present views
+`Plate`的能力：
 
-In 'Plate', configure the decision page.  
+- 定义远端视图数据源
+- 组合并展现视图
 
-We need to define view data at the remote, then implement the `template` and `component` in the process of app development. 
+在 `Plate` 中，配置决定页面。
+
+我们只需要在服务端定义好一个个视图数据，并在app开发过程中实现相应组件，那么app的视图样式即可在一定程度上由服务端控制。
+
+---
+
+## 基本概念
+
+- Template：模板是视图组件的分类抽象，与服务端定义的配置对应
+- Component：组件是模板的具体实现，负责视图的展现。每个组件都定义了一种视图。一个完整的页面由多种组件构成
 
 ---
 
 ## Demo
 
-Build the `app` module and install for mobile
+构建 `app` 运行
 
 !['preview'](docs/img/demo_preview.gif)
 
 ---
 
-## How to
+## 使用方式
 
-Step 1. Gradle configure
+1、导入
 
-Add the JitPack repository to your build file:
+gradle仓库配置:
 
 ```gradle
 	allprojects {
@@ -42,23 +51,24 @@ Add the JitPack repository to your build file:
 	}
 ```
 
-Add the dependency：
+添加依赖：
 
 ```gradle
     implementation 'com.gitee.mingyueyixi:plate:v1.0.0'
 ```
 
-2、Init Plate
+2、初始化Plate
 
 ```kotlin
     Plate.doInit(context)
 ```
 
-3、Define the remote view data
+3、定义远端视图数据
 
-The view data from the remote needs to conform to `plate` module, refer to: [PlateStructure](plate-core/src/main/java/com/lu/plate/data/PlateStructure.kt)
+远端定义的视图数据需要符合`plate`
+预定义的结构，参考：[PlateStructure](plate-core/src/main/java/com/lu/plate/data/PlateStructure.kt)
 
-a sample like: [plate_sample_rv.json](app/src/main/assets/plate_sample_rv.json)
+一个远端视图列表数据，例如 [plate_sample_rv.json](app/src/main/assets/plate_sample_rv.json)
 
 ```json
 {
@@ -89,9 +99,9 @@ a sample like: [plate_sample_rv.json](app/src/main/assets/plate_sample_rv.json)
 }
 ```
 
-Remember the `templateId` value, we'll use it later.
+记住其中的 `templateId`，后面需要进行注册。
 
-4、Implement template and componen
+4、实现模板与组件
 
 ```kotlin
 
@@ -145,9 +155,9 @@ class LeftImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate,
 
 ```
 
-5、Register Template
+5、注册模板
 
-register template with `templateId`:
+每个模板都有一个`templateId`，根据id注册模板：
 
 ```kotlin
 val plate = Plate().also {
@@ -155,9 +165,9 @@ val plate = Plate().also {
 }
 ```
 
-6、Apply for RecyclerView
+6、应用RecyclerView视图
 
-Get a RecyclerView instance , then apply:
+上文实现的`RVCompoent`组件，实际是基于`RecyclerView.Adapter`实现的，因此，我们需要一个`RecyclerView`并进行配置：
 
 ```kotlin
 
@@ -183,8 +193,9 @@ private fun initView() {
 
 ```
 
+## 鸣谢
+
+
 ## LICENSE
 
-[MulanPSL2](http://license.coscl.org.cn/MulanPSL2)
-
-
+`Plate` 使用[MulanPSL2](http://license.coscl.org.cn/MulanPSL2) 开源许可证
