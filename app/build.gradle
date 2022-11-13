@@ -7,6 +7,15 @@ plugins {
 android {
     compileSdk 33
 
+    signingConfigs {
+        testConfig {
+            storeFile rootProject.file('keystore/app-test.jks')
+            storePassword "123456"
+            keyAlias "app-test"
+            keyPassword "123456"
+        }
+    }
+
     defaultConfig {
         applicationId "com.lu.plate.demo"
         minSdk 21
@@ -14,6 +23,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        signingConfig signingConfigs.testConfig
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,7 +56,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
     implementation project(":plate-ui")
-    implementation project(':plate-core')
+    releaseImplementation 'com.gitee.mingyueyixi:plate:develop-SNAPSHOT'
+    debugImplementation project(':plate-core')
+
     implementation('com.blankj:utilcodex:1.31.1')
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.10'
