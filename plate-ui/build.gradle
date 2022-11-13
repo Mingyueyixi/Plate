@@ -11,7 +11,9 @@ android {
 }
 
 dependencies {
-    implementation project(":plate-core")
+    releaseImplementation 'com.gitee.mingyueyixi:plate:develop-SNAPSHOT'
+    debugImplementation project(":plate-core")
+
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.10'
     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
