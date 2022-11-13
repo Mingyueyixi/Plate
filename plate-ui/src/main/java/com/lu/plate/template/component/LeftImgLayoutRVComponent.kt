@@ -32,7 +32,6 @@ class LeftImgLayoutRVComponent(
         holder: BasePlateRecyclerAdapter.BVH,
         position: Int
     ) {
-        super.onBindView(adapter, holder, position)
         val binding = LeftImgLayoutImgBinding.bind(holder.itemView)
         adapter.getItem(position)?.props?.let {
             applyCardViewEx(binding, it)
