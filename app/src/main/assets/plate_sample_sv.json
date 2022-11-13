@@ -5,12 +5,6 @@
       "id": 0,
       "props": {
         "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
-        "cardViewEx": {
-          "cardCornerRadius": "8dp",
-          "cardElevation": "2dp",
-          "strokeWidth": "10dp",
-          "cardBackgroundColor": "#FFeebbcc"
-        },
         "title": "购物",
         "subTitle": "2022/11/11",
         "img": {
@@ -26,7 +20,7 @@
         "background": {
           "shape": "rectangle",
           "solid": {
-            "color": "#FFAA3399"
+            "color": "#FFECEFE9"
           }
         },
         "marginBottom": "100"
@@ -37,12 +31,6 @@
       "id": 0,
       "props": {
         "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
-        "cardViewEx": {
-          "cardCornerRadius": "8dp",
-          "cardElevation": "2dp",
-          "strokeWidth": "10dp",
-          "cardBackgroundColor": "#FFeebbcc"
-        },
         "title": "购物",
         "subTitle": "2022/11/11",
         "img": {
@@ -58,7 +46,7 @@
         "background": {
           "shape": "rectangle",
           "solid": {
-            "color": "#FFAA3399"
+            "color": "#FFECEFE9"
           }
         },
         "marginBottom": "100"
@@ -68,12 +56,6 @@
       "id": 0,
       "props": {
         "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
-        "cardViewEx": {
-          "cardCornerRadius": "8dp",
-          "cardElevation": "2dp",
-          "strokeWidth": "10dp",
-          "cardBackgroundColor": "#FFeebbcc"
-        },
         "title": "购物",
         "subTitle": "2022/11/11",
         "img": {
@@ -89,7 +71,7 @@
         "background": {
           "shape": "rectangle",
           "solid": {
-            "color": "#FFAA3399"
+            "color": "#FFECEFE9"
           }
         },
         "marginBottom": "100"
@@ -100,12 +82,6 @@
       "id": 0,
       "props": {
         "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
-        "cardViewEx": {
-          "cardCornerRadius": "8dp",
-          "cardElevation": "2dp",
-          "strokeWidth": "10dp",
-          "cardBackgroundColor": "#FFeebbcc"
-        },
         "title": "购物",
         "subTitle": "2022/11/11",
         "img": {
@@ -121,7 +97,7 @@
         "background": {
           "shape": "rectangle",
           "solid": {
-            "color": "#FFAA3399"
+            "color": "#FFECEFE9"
           }
         },
         "marginBottom": "100"
@@ -132,12 +108,6 @@
       "id": 0,
       "props": {
         "clickLink": "app://schemas.plate.demo/app/web?url=https%3A%2F%2Fwww.biying.com",
-        "cardViewEx": {
-          "cardCornerRadius": "8dp",
-          "cardElevation": "2dp",
-          "strokeWidth": "10dp",
-          "cardBackgroundColor": "#FFeebbcc"
-        },
         "title": "购物",
         "subTitle": "2022/11/11",
         "img": {
@@ -153,7 +123,7 @@
         "background": {
           "shape": "rectangle",
           "solid": {
-            "color": "#FFAA3399"
+            "color": "#FFECEFE9"
           }
         },
         "marginBottom": "100"

@@ -37,6 +37,7 @@ class ScrollLayoutAdapter(var plate: Plate, var plateStructure: PlateStructure) 
         }
         val content = getItem(position)
         val itemView = component.onCreateView(plateStructure, position, content)
+        content?.style?.let { component.applyContentStyle(it, itemView) }
 
         itemView.setOnClickListener {
             mOnClickListener?.onClick(this, it, content, position)

@@ -44,6 +44,9 @@ open class BasePlateRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: BVH, position: Int) {
+        getItem(position)?.style?.let {
+            holder.component.applyContentStyle(it, holder.itemView)
+        }
         holder.component.onBindView(this, holder, position)
     }
 
@@ -61,6 +64,5 @@ open class BasePlateRecyclerAdapter(
     open fun setOnClickListener(listener: (BasePlateRecyclerAdapter, View, Int) -> Unit) {
         mOnClickListener = listener
     }
-
 
 }

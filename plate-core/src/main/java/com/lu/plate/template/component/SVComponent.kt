@@ -4,7 +4,7 @@ import android.view.View
 import com.lu.plate.data.Content
 import com.lu.plate.data.PlateStructure
 
-interface SVComponent : Component {
+interface SVComponent : StyleComponent {
 
     fun onCreateView(
         plateStructure: PlateStructure,

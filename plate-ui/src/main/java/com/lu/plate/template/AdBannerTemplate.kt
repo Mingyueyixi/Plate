@@ -38,7 +38,6 @@ class AdBannerTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate, temp
             holder: BasePlateRecyclerAdapter.BVH,
             position: Int
         ) {
-            super.onBindView(adapter, holder, position)
             val bindding = BannerAdLayoutBinding.bind(holder.itemView)
             val content = adapter.getItem(position)
             bindding.bannerAd.indicator = CircleIndicator(bindding.root.context)
