@@ -1,0 +1,8 @@
+jdk:
+- openjdk11
+before_install:
+   - chmod +x ./gradlew
+install:
+   - ./gradlew clean -xtest -xlint :plate-core:assembleRelease publishToMavenLocal 
+env:
+   MYVAR: "custom environment variable"
