@@ -2,7 +2,7 @@
 
 [中文文档](README.zh-CN.md)
 
-Use for Android, a simple framework for  implementing dynamic configuration page.
+Use for Android, a simple library for implementing dynamic configuration page.
 
 --- 
 
@@ -48,13 +48,13 @@ Add the dependency：
     implementation 'com.gitee.mingyueyixi:plate:v1.0.0'
 ```
 
-2、Init Plate
+Step 2、Init Plate
 
 ```kotlin
     Plate.doInit(context)
 ```
 
-3、Define the remote view data
+Step 3、Define the remote view data
 
 The view data from the remote needs to conform to `plate` module, refer to: [PlateStructure](plate-core/src/main/java/com/lu/plate/data/PlateStructure.kt)
 
@@ -91,7 +91,7 @@ a sample like: [plate_sample_rv.json](app/src/main/assets/plate_sample_rv.json)
 
 Remember the `templateId` value, we'll use it later.
 
-4、Implement template and componen
+Step 4、Implement template and componen
 
 ```kotlin
 
@@ -145,7 +145,7 @@ class LeftImgLayoutTemplate(plate: Plate, templateId: Int) : BaseTemplate(plate,
 
 ```
 
-5、Register Template
+Step 5、Register Template
 
 register template with `templateId`:
 
@@ -155,7 +155,7 @@ val plate = Plate().also {
 }
 ```
 
-6、Apply for RecyclerView
+Step 6、Apply for RecyclerView
 
 Get a RecyclerView instance , then apply:
 

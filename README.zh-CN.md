@@ -193,9 +193,6 @@ private fun initView() {
 
 ```
 
-## 鸣谢
-
-
 ## LICENSE
 
 `Plate` 使用[MulanPSL2](http://license.coscl.org.cn/MulanPSL2) 开源许可证
