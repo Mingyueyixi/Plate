@@ -15,7 +15,7 @@ Suitable for dynamically configured pages, such as' active pages', 'operation pa
 
 In 'Plate', configure the decision page.  
 
-We need to define view data at the remote, then implement the `template` and `component` in the process of app development. 
+You need to define view data at the remote, then implement the `template` and `component` in the process of app development. 
 
 ---
 
